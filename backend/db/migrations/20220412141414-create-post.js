@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       post_list_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       caption: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2200),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
