@@ -1,0 +1,42 @@
+.profile-info {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 20px auto;
+    padding-bottom: 20px;
+    border-bottom: var(--sp-border);
+}
+
+.profile-image {
+    margin-left: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.main-tab {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 0;
+}
+.main-tab button {
+    all: unset;
+    height: 30px;
+    cursor: pointer;
+}
+.edit-profile button{
+    border: var(--sp-border);
+    height: 16px;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.middle-tab {
+    margin-bottom: 15px;
+}
+.bio-tab {
+    margin-left: 20px;
+}
+
+.divider {
+    width: 33%;
+}
