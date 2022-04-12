@@ -1,1 +1,13 @@
 /* TODO Add site wide styles */
+html {
+    --sp-border-color: rgb(219, 219, 219);
+    --sp-border: solid 1px var(--sp-border-color);
+    --sp-button-blue: #0095f6;
+    --sp-input-background: #e8f0fe;
+}
+.logo-name {
+    all: unset;
+    font-family: 'Billabong', sans-serif;
+    font-size: 30px;
+    cursor: pointer;
+}

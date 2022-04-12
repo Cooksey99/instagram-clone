@@ -1,3 +1,21 @@
 .profile-dropdown {
   position: absolute;
 }
+
+#nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 8px 0 14px 0;
+  border-bottom: var(--sp-border);
+}
+#nav-bar button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.account-nav {
+  display: flex;
+  justify-content: space-around;
+}

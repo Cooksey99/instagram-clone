@@ -1,0 +1,106 @@
+
+#login-section {
+    width: 935px;
+    height: 632px;
+    display: flex;
+    margin: auto;
+}
+#login-left {
+    /* height: 632px; */
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
+}
+#login-right {
+    width: 50%;
+    height: 100%;
+}
+#login-right h1, #login-right form {
+    text-align: center;
+}
+#login-form-container {
+    height: 420px;
+    width: 350px;
+    /* background-color: coral; */
+    border: var(--sp-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-h1 {
+    font-size: 54px;
+    margin-top: 20px;
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    gap: 5px;
+}
+#login-form input {
+    height: 32px;
+    border: var(--sp-border);
+    border-radius: 3px;
+    background-color: var(--sp-input-background);
+}
+#login-form button {
+    color: white;
+    background: var(--sp-button-blue);
+    border: none;
+    height: 26px;
+    border-radius: 3px;
+}
+#or-divider {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   margin: 8px auto;
+}
+.border-line {
+    border: .5px solid var(--sp-border-color);
+    /* margin: 10px 40px 18px; */
+    width: 29%;
+    margin-top: 8px;
+}
+/*  */
+.or-text {
+    opacity: 40%;
+    width: 40%;
+    text-align: center;
+}
+
+#sign-up-link {
+    margin: 16px 0;
+    width: 350px;
+    height: 60px;
+    border: var(--sp-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.phone-image {
+    height: 538.84px;
+    width: 250px;
+    margin: 26px 0 0 158px;
+    /* opacity: 50%; */
+}
+
+/* @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 1.5dppx).phone-animation-container {
+    background-image: url("https://www.instagram.com/static/images/homepage/phones/home-phones-2x.png/cbc7174b4f05.png");
+
+} */
+.phone-animation-container {
+    background-size: 468.32px 634.15px;
+    align-self: center;
+    height: 581.15px;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 1.5dppx) {
+    .phone-animation-container {
+        background-image: url("https://www.instagram.com/static/images/homepage/phones/home-phones-2x.png/cbc7174b4f05.png");
+    }
+}

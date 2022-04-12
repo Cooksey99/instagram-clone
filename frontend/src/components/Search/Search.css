@@ -1,0 +1,17 @@
+#search-component {
+    display: flex;
+    align-items: center;
+    background-color: #efefef;
+    padding: 0 16px;
+    width: 236px;
+    border-radius: 8px;
+    cursor: text;
+}
+input.search-bar {
+    height: 36px;
+    border: none;
+    background: none;
+}
+input.search-bar:active {
+    border: none;
+}

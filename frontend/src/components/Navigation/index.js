@@ -1,17 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import Search from '../Search';
+import AddPostModal from '../AddPostModal';
+
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <>
+        <div className='account-nav'>
+          <Link to='/'><HomeRoundedIcon /></Link>
+          <AddPostModal />
+          <ProfileButton user={sessionUser} />
+        </div>
+      </>
     );
   } else {
     sessionLinks = (
@@ -24,12 +34,16 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <>
+      <nav id='nav-bar'>
+        <NavLink exact to="/" className='logo-name'>Inthtagram</NavLink>
+        <Search />
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
+      </nav>
+    </>
+
   );
 }
 
