@@ -40,3 +40,18 @@
   display: flex;
   justify-content: space-around;
 }
+
+.profile-tab {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding-left: 10px;
+  height: 33.33%;
+}
+.profile-tab:hover {
+  background-color: rgb(245, 245, 245);
+}
+.logout-button {
+  border-top: var(--sp-border);
+}

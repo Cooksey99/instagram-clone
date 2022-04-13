@@ -4,10 +4,15 @@ html {
     --sp-border: solid 1px var(--sp-border-color);
     --sp-button-blue: #0095f6;
     --sp-input-background: #e8f0fe;
+    --sp-post-button-color: #0095f6;
 }
 .logo-name {
     all: unset;
     font-family: 'Billabong', sans-serif;
     font-size: 30px;
     cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color: black;
 }

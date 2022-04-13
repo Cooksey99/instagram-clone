@@ -1,9 +1,10 @@
+import { useDispatch } from "react-redux"
 
 
 
 export default function PostForm() {
 
-
+    const dispatch = useDispatch();
 
     return (
         <>

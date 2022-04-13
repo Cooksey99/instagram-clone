@@ -24,8 +24,8 @@ export default function Profile() {
                         </div>
                         <div className="main-tab middle-tab">
                             <p>posts</p>
-                            <p>followers</p>
-                            <p>following</p>
+                            <p><b>0</b> followers</p>
+                            <p><b>0</b> following</p>
                         </div>
                         <div className="bio-tab">
                             <b>{user.first_name} {user.last_name}</b>
