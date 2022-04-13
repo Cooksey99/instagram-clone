@@ -83,6 +83,7 @@
     width: 293px;
     height: 821px;
     margin: 0 0 30px;
+    z-index: 2;
 }
 #fixed-sidebar {
     position: fixed;

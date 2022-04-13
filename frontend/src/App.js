@@ -27,21 +27,24 @@ function App() {
           <h1>Hello I am a Modal</h1>
         </Modal>
       )} */}
+
       {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path='/signup'>
-            <SignupFormPage />
-          </Route>
-          <Route path='/profile'>
-            <Profile />
-          </Route>
-          <Route path='/newsfeed'>
-            <NewsfeedPage user={user} />
-          </Route>
-        </Switch>
+        <div id='app'>
+          <Switch>
+            <Route path='/login' >
+              <LoginFormPage />
+            </Route>
+            <Route path='/signup'>
+              <SignupFormPage />
+            </Route>
+            <Route path='/profile'>
+              <Profile />
+            </Route>
+            <Route path='/newsfeed'>
+              <NewsfeedPage user={user} />
+            </Route>
+          </Switch>
+        </div>
       )}
     </>
   );
