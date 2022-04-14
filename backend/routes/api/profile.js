@@ -11,6 +11,13 @@ router.post('/newPost', asyncHandler(async (req, res) => {
 
 }));
 
+router.post('/editPost', asyncHandler(async (req, res) => {
+    const post = await Post.create({ ...req.body });
+
+    res.json(post);
+
+}));
+
 router.get('/:userId/posts', asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
@@ -23,6 +30,16 @@ router.get('/:userId/posts', asyncHandler(async (req, res) => {
     const data = posts.map(post => post);
     res.json(data)
 }));
+
+// Delete post
+router.delete('/deletePost/:postId', asyncHandler(async (req, res) => {
+    const { postId } = req.params;
+
+    const post = await Post.findByPk(postId);
+    await post.destroy();
+
+    res.json()
+}))
 
 // Find user
 router.get('/:id', asyncHandler(async (req, res) => {

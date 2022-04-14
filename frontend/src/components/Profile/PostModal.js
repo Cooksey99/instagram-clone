@@ -1,6 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import './PostModal.css';
+import PostSettingModal from '../PostSettingModal';
 
 export default function PostModal({ post, user }) {
     const history = useHistory();
@@ -19,7 +20,7 @@ export default function PostModal({ post, user }) {
                             <Link to={`/profile/${user?.id}`}>{user?.username}</Link>
                         </div>
                         <div className='dot-menu'>
-                            <MoreHorizIcon />
+                           <PostSettingModal post={post} user={user} />
                         </div>
                     </div>
 

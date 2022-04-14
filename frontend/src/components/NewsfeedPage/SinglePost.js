@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory, Link } from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'; import './NewsfeedPage.css'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import PostSettingModal from "../PostSettingModal";
 
 export default function SinglePost({ post }) {
     const dispatch = useDispatch();
@@ -22,9 +22,7 @@ export default function SinglePost({ post }) {
                             src={post?.user?.image ? post?.user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                         <Link to={`/profile/${post?.user?.id}`}>{post?.user?.username}</Link>
                     </div>
-                    <div className="post-setting-icon">
-                        <MoreHorizIcon />
-                    </div>
+                    <PostSettingModal post={post.post}/>
                 </div>
                 <div className="post-pic">
                     <img src={post?.post?.image} alt='post image' />
