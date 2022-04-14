@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import PostForm from './PostForm';
+import { useSelector } from 'react-redux';
 
 export default function AddPostModal() {
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+    const user = useSelector(state => state?.session?.user);
 
     return (
         <>
@@ -13,7 +15,7 @@ export default function AddPostModal() {
             </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PostForm />
+                    <PostForm user={user}/>
                 </Modal>
             )}
         </>

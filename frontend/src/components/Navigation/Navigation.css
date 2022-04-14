@@ -1,10 +1,12 @@
 .profile-dropdown {
-  position: absolute;
-  /* z-index: 3; */
+  position: fixed;
+  z-index: 5;
+  background: white;
   top: 66px;
   right: 130px;
   border: none;
   border-radius: 3px;
+  overflow: hidden;
   background-color: white;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
   width: 230px;
@@ -23,12 +25,16 @@
 } */
 
 #nav-bar {
+  position: fixed;
+  width: 100%;
+  background: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 0;
+  top: 0;
+  margin-top: 0;
   margin-right: 55px;
-  padding: 8px 0 14px 0;
+  padding: 14px 0 14px 0;
   border-bottom: var(--sp-border);
 }
 #nav-bar button {
@@ -39,4 +45,20 @@
 .account-nav {
   display: flex;
   justify-content: space-around;
+}
+
+.profile-tab {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding-left: 10px;
+  height: 33.33%;
+  background: white;
+}
+.profile-tab:hover {
+  background-color: rgb(245, 245, 245);
+}
+.logout-button {
+  border-top: var(--sp-border);
 }

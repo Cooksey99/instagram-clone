@@ -1,8 +1,13 @@
+#profile-page {
+    margin: auto;
+    width: 975px;
+    box-sizing: border-box;
+}
 .profile-info {
     display: flex;
     justify-content: space-around;
-    width: 80%;
-    margin: 20px auto;
+    width: 98%;
+    margin: auto;
     padding-bottom: 20px;
     border-bottom: var(--sp-border);
 }
@@ -39,4 +44,37 @@
 
 .divider {
     width: 33%;
+}
+
+/*  */
+
+#posts-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: -1px;
+    gap: 5px;
+    width: 80px;
+    border-top: solid 1px black;
+}
+
+/* Area that displays all post images */
+
+#all-posts {
+    width: 976px;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+    margin: auto;
+}
+.single-post-image img{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 293px;
+    height: 293px;
+    object-fit: cover;
+    margin: auto;
 }

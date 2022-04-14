@@ -12,6 +12,6 @@ input.search-bar {
     border: none;
     background: none;
 }
-input.search-bar:active {
-    border: none;
+input.search-bar:focus {
+    outline: none;
 }

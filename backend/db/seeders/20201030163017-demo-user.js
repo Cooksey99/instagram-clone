@@ -32,6 +32,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        email: 'elonmusk@gmail.com',
+        first_name: 'Elon',
+        last_name: 'Musk',
+        username: 'ElonMusk',
+        hashed_password: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 
