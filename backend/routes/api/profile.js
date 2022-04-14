@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Post } = require("../../db/models")
+const { Post, User } = require("../../db/models")
 
 const router = express.Router();
 
@@ -24,5 +24,12 @@ router.get('/:userId/posts', asyncHandler(async (req, res) => {
     res.json(data)
 }));
 
+// Find user
+router.get('/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+
+    res.json(user);
+  }));
 
 module.exports = router;

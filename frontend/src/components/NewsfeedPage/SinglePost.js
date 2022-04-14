@@ -18,23 +18,23 @@ export default function SinglePost({ post }) {
             <section className="single-post">
                 <div className="top-bar-post">
                     <div className="post-profile-pic">
-                        <img onClick={() => history.push(`/profile/${post.user.id}`)}
-                            src={post.user.image ? post.user.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
-                        <Link to={`/profile/${post.user.id}`}>{post.user.username}</Link>
+                        <img onClick={() => history.push(`/profile/${post?.user?.id}`)}
+                            src={post?.user?.image ? post?.user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                        <Link to={`/profile/${post?.user?.id}`}>{post?.user?.username}</Link>
                     </div>
                     <div className="post-setting-icon">
                         <MoreHorizIcon />
                     </div>
                 </div>
                 <div className="post-pic">
-                    <img src={post.post.image} alt='post image' />
+                    <img src={post?.post?.image} alt='post image' />
                 </div>
                 <div className="icon-bar">
                     <FavoriteBorderIcon />
                     <ModeCommentOutlinedIcon />
                 </div>
                 <div className="caption-bar">
-                    <p>{post.post.caption}</p>
+                    <p>{post?.post?.caption}</p>
                 </div>
                 <form className="comment-input">
                     <input placeholder="Add a comment..." />

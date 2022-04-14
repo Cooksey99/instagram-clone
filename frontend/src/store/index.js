@@ -1,10 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
-import newsfeed from './posts'
+import session from './session';
+import newsfeed from './posts';
+import profile from './profile';
+
 const rootReducer = combineReducers({
   session,
-  newsfeed
+  newsfeed,
+  profile
 });
 
 let enhancer;

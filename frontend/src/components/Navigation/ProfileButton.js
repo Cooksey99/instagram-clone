@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
         <div className="profile-dropdown">
           <div className="profile-bubble-point"></div>
           <div className="profile-tab"
-          onClick={() => history.push('/profile')}>
+          onClick={() => history.push(`/profile/${user.id}`)}>
             <AccountCircleOutlinedIcon />
             <p>Profile</p>
           </div>

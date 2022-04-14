@@ -8,19 +8,22 @@ import { Modal } from "../../context/Modal";
 import PostModal from "./PostModal";
 import { stepButtonClasses } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { fetchFindUser } from "../../store/profile";
 
 export default function Profile() {
 
     const { id } = useParams();
+
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const [modalPost, setModalPost] = useState({});
 
-    const user = useSelector(state => state?.session?.user);
+    const user = useSelector(state => state?.profile?.user);
     const posts = useSelector(state => state?.newsfeed?.posts)
 
     useEffect(() => {
-        dispatch(fetchUserPosts(user.id));
+        dispatch(fetchFindUser(id));
+        dispatch(fetchUserPosts(id));
         console.log(id)
     }, [dispatch])
 

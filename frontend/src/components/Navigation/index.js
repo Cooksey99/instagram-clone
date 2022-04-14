@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
   return (
     <>
       <nav id='nav-bar'>
-        <NavLink exact to="/" className='logo-name'>Inthtagram</NavLink>
+        <NavLink exact to="/newsfeed" className='logo-name'>Inthtagram</NavLink>
         <Search />
         <div>
           {isLoaded && sessionLinks}
