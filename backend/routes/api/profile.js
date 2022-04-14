@@ -34,6 +34,8 @@ router.get('/:userId/posts', asyncHandler(async (req, res) => {
     res.json(data)
 }));
 
+
+
 // Delete post
 router.delete('/deletePost/:postId', asyncHandler(async (req, res) => {
     const { postId } = req.params;

@@ -4,11 +4,11 @@ import './Profile.css'
 import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
-import { Modal } from "../../context/Modal";
-import PostModal from "./PostModal";
+
 import { stepButtonClasses } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { fetchFindUser } from "../../store/profile";
+import ProfilePost from "./ProfilePost";
 
 export default function Profile() {
 
@@ -66,23 +66,13 @@ export default function Profile() {
                 {/* Area that displays all of the images/posts */}
                 <div id='all-posts'>
                     {posts?.length > 0 && posts.map(post => (
-                        <div key={post?.id} className="single-post-image"
-                            onClick={() => {
-                                setShowModal(true);
-                                setModalPost(post);
-                            }}>
-                            <img src={post?.image} />
-                        </div>
+                        <ProfilePost post={post} user={user} />
                     ))}
                 </div>
 
 
             </section>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <PostModal post={modalPost} user={user} />
-                </Modal>
-            )}
+
         </>
     )
 }

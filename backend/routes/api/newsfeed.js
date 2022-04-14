@@ -1,13 +1,12 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Post, User } = require("../../db/models")
+const { Post, User, Comment } = require("../../db/models")
 
 const router = express.Router();
 
 
 router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll();
-    let result = {}
 
     const data = await Promise.all(posts.map(async post => {
         const user = await User.findOne({
@@ -15,8 +14,15 @@ router.get('/', asyncHandler(async (req, res) => {
                 id: post.user_id
             }
         });
+
+        const comments = await Comment.findAll({
+            where: {
+                post_id: post.id
+            }
+        })
+
         // users.user =  user;
-        let temp = { user: user, post: post };
+        let temp = { user: user, post: post, comments: comments };
 
         return temp;
 
@@ -30,6 +36,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
     res.json(data);
 }));
+
 
 
 module.exports = router;
