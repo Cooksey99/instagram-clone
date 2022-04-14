@@ -7,9 +7,11 @@ import { fetchUserPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
 import PostModal from "./PostModal";
 import { stepButtonClasses } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
 
+    const { id } = useParams();
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const [modalPost, setModalPost] = useState({});
@@ -18,7 +20,8 @@ export default function Profile() {
     const posts = useSelector(state => state?.newsfeed?.posts)
 
     useEffect(() => {
-        dispatch(fetchUserPosts(user.id))
+        dispatch(fetchUserPosts(user.id));
+        console.log(id)
     }, [dispatch])
 
     return (
@@ -37,7 +40,7 @@ export default function Profile() {
                             <button><SettingsIcon /></button>
                         </div>
                         <div className="main-tab middle-tab">
-                            <p>posts</p>
+                            <p><b>{posts.length}</b> posts</p>
                             <p><b>0</b> followers</p>
                             <p><b>0</b> following</p>
                         </div>

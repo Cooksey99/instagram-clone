@@ -70,6 +70,7 @@
     margin: auto;
 }
 .single-post-image img{
+    cursor: pointer;
     display: flex;
     justify-content: center;
     width: 293px;
@@ -77,11 +78,3 @@
     object-fit: cover;
     margin: auto;
 }
-
-
-
-
-
-
-
-
