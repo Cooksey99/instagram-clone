@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import './EditPostForm.css'
+import { fetchEditPosts } from '../../store/posts';
+import './EditPostForm.css';
 
 export default function EditPostForm({ post, user }) {
 
+    const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
 
@@ -13,13 +16,22 @@ export default function EditPostForm({ post, user }) {
         console.log('location', location.pathname)
     }, [])
 
+    const handleEdit = (e) => {
+        let newPost = {
+            id: post.id,
+            image: post.image,
+            caption: postCaption
+        }
+        dispatch(fetchEditPosts(newPost));
+    }
+
     return (
         <>
             <section id='edit-post'>
                     <div id='edit-post-header'>
                         <button>Cancel</button>
                         <h3>Edit Form</h3>
-                        <button>Done</button>
+                        <button onClick={handleEdit}>Done</button>
                     </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">

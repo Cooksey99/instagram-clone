@@ -36,20 +36,20 @@ export default function Profile() {
                     </div>
                     <div className="divider">
                         <div className="main-tab">
-                            <h2>{user.username}</h2>
+                            <h2>{user?.username}</h2>
                             <div className='edit-profile'>
                                 <button>Edit Profile</button>
                             </div>
                             <button><SettingsIcon /></button>
                         </div>
                         <div className="main-tab middle-tab">
-                            <p><b>{posts.length}</b> posts</p>
+                            <p><b>{posts?.length}</b> posts</p>
                             <p><b>0</b> followers</p>
                             <p><b>0</b> following</p>
                         </div>
                         <div className="bio-tab">
-                            <b>{user.first_name} {user.last_name}</b>
-                            <p>{user.bio}</p>
+                            <b>{user?.first_name} {user?.last_name}</b>
+                            <p>{user?.bio}</p>
 
                         </div>
                     </div>
@@ -65,13 +65,13 @@ export default function Profile() {
 
                 {/* Area that displays all of the images/posts */}
                 <div id='all-posts'>
-                    {posts.length > 0 && posts.map(post => (
-                        <div key={post.id} className="single-post-image"
+                    {posts?.length > 0 && posts.map(post => (
+                        <div key={post?.id} className="single-post-image"
                             onClick={() => {
                                 setShowModal(true);
                                 setModalPost(post);
                             }}>
-                            <img src={post.image} />
+                            <img src={post?.image} />
                         </div>
                     ))}
                 </div>

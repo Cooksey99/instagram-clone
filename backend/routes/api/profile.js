@@ -11,11 +11,14 @@ router.post('/newPost', asyncHandler(async (req, res) => {
 
 }));
 
-router.post('/editPost', asyncHandler(async (req, res) => {
-    const post = await Post.create({ ...req.body });
+router.put('/editPost', asyncHandler(async (req, res) => {
+    const { id } = req.body;
 
+    const post = await Post.findByPk(id);
+
+    post.set(req.body);
+    await post.save();
     res.json(post);
-
 }));
 
 router.get('/:userId/posts', asyncHandler(async (req, res) => {
