@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "../../context/Modal";
 import PostModal from "./PostModal";
 
-export default function ProfilePost({ post, user }) {
+export default function ProfilePost({ post, user, comments }) {
 
     const [showModal, setShowModal] = useState(false);
     const [modalPost, setModalPost] = useState({});
 
+    useEffect(() => {
+        // console.log('ProfilePost', comments)
+    }, [])
+
     return (
         <>
-            <div key={post?.id} className="single-post-image"
+            <div className="single-post-image"
                 onClick={() => {
                     setShowModal(true);
                     setModalPost(post);

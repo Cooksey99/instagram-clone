@@ -9,11 +9,7 @@ router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll();
 
     const data = await Promise.all(posts.map(async post => {
-        const user = await User.findOne({
-            where: {
-                id: post.user_id
-            }
-        });
+        const user = await User.findByPk(post.user_id);
 
         const comments = await Comment.findAll({
             where: {
@@ -32,7 +28,7 @@ router.get('/', asyncHandler(async (req, res) => {
     }));
 
 
-    console.log('\n\n\n' + data + '\n\n\n')
+    // console.log('\n\n\n' + data + '\n\n\n')
 
     res.json(data);
 }));

@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { fetchEditPosts } from '../../store/posts';
 import './EditPostForm.css';
 
-export default function EditPostForm({ post, user }) {
+export default function EditPostForm({ post, user, setShowModal }) {
 
     const dispatch = useDispatch();
     const location = useLocation();
@@ -29,7 +29,7 @@ export default function EditPostForm({ post, user }) {
         <>
             <section id='edit-post'>
                     <div id='edit-post-header'>
-                        <button>Cancel</button>
+                        <button onClick={() => setShowModal(false)}>Cancel</button>
                         <h3>Edit Form</h3>
                         <button onClick={handleEdit}>Done</button>
                     </div>

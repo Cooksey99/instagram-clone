@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Post, User } = require("../../db/models")
+const { Post, User, Comment } = require("../../db/models")
 
 const router = express.Router();
 
@@ -34,6 +34,35 @@ router.get('/:userId/posts', asyncHandler(async (req, res) => {
     res.json(data)
 }));
 
+// Get post data
+router.get('/post/:postId', asyncHandler(async (req, res) => {
+    const { postId } = req.params;
+
+    const post = await Post.findByPk(postId);
+
+    const commentList = await Comment.findAll({
+        where: {
+            post_id: postId
+        }
+    })
+
+    const comments = await Promise.all(commentList.map(async comment => {
+        let user = await User.findByPk(comment.user_id);
+
+        let result = { user, comment }
+
+        return result;
+    }));
+
+    // console.log('\n\n\n' + comments + '\n\n\n')
+
+    // const comments = await Promise.all(commentList.map(comment => {
+    // }));
+
+    // const result = { post: post, comments: comments}
+
+    res.json(comments);
+}));
 
 
 // Delete post
@@ -52,6 +81,6 @@ router.get('/:id', asyncHandler(async (req, res) => {
     const user = await User.findByPk(id);
 
     res.json(user);
-  }));
+}));
 
 module.exports = router;

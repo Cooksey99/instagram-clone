@@ -11,7 +11,7 @@ export default function EditPostModal({ post, user }) {
             <button onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditPostForm post={post} user={user} />
+                    <EditPostForm post={post} user={user} setShowModal={setShowModal} />
                 </Modal>
             )}
         </>
