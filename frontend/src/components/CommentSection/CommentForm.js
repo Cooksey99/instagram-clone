@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { fetchPostComment } from '../../store/comment';
+import { fetchPostComment, fetchPostData } from '../../store/posts';
 
 export default function CommentForm({ user, post }) {
 
@@ -17,7 +17,7 @@ export default function CommentForm({ user, post }) {
         }
 
         dispatch(fetchPostComment(commentData));
-        
+        setComment('');
     }
 
     return (

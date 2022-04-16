@@ -8,6 +8,8 @@ const DELETE_POST = 'session/DELETE_POST';
 const POST_INFO = 'session/POST_INFO';
 
 const POST_COMMENT = 'session/POST_COMMENT';
+const EDIT_COMMENT = 'session/EDIT_COMMENT';
+const DELETE_COMMENT = 'session/DELETE_COMMENT';
 
 const getPosts = (posts) => ({
     type: GET_POSTS,
@@ -35,6 +37,14 @@ const getPostInfo = (postData) => ({
 const postComment = (comment) => ({
     type: POST_COMMENT,
     comment
+});
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+    comment
+});
+const deleteComment = (commentId) => ({
+    type: DELETE_COMMENT,
+    commentId
 });
 
 export const fetchGetPosts = () => async dispatch => {
@@ -103,7 +113,26 @@ export const fetchPostComment = (comment) => async dispatch => {
         dispatch(postComment(data));
     };
 };
-
+export const fetchEditComment = (comment) => async dispatch => {
+    const response = csrfFetch('/api/comment/editComment', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(comment)
+    });
+    if (response.ok) {
+        const data = response.json();
+        dispatch(editComment(data));
+    };
+};
+export const fetchDeleteComment = (commentId) => async dispatch => {
+    const response = csrfFetch('/api/comment/delete', {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const data = response.json();
+        dispatch(deleteComment(data));
+    };
+};
 
 const initialState = { posts: {}, userPosts: {}, singlePost: {} };
 
@@ -125,8 +154,18 @@ export default function reducer(state = initialState, action) {
         case POST_INFO:
             newState.singlePost = action.postData;
             return newState;
+        //
+        // Comment section
         case POST_COMMENT:
-            newState.singlePost.comments[action.comment.id] = action.comment;
+            const commendId = action.comment.id;
+            // console.log('\n\n\n' + commendId + '\n\n\n');
+            newState.singlePost.comment.commendId = action.comment;
+            return newState;
+        case EDIT_COMMENT:
+            newState.singlePost.comment[action.comment.id] = action.comment;
+            return newState;
+        case DELETE_POST:
+            delete newState.singlePost.comment[action.comment.id];
             return newState;
         default:
             return state;

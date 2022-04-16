@@ -9,6 +9,24 @@ router.post('/newComment', asyncHandler(async (req, res) => {
 
     res.json(comment);
 }));
+router.put('/editComment', asyncHandler(async (req, res) => {
+    const { id, post_id, user_id, comment } = req.body;
+
+    const result = await Comment.findByPk(id);
+
+    result.set({ post_id, user_id, comment });
+    await result.save();
+
+    res.json(result);
+}));
+router.delete('/delete', asyncHandler(async (req, res) => {
+    const { commentId } = req.body;
+
+    const comment = await Comment.findByPk(commentId);
+    await comment.destroy();
+
+    res.json();
+}));
 
 
 
