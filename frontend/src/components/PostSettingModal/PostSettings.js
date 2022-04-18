@@ -37,10 +37,10 @@ export default function PostSettings({ sessionUser, post, setShowModal }) {
     modalContent = (
       <>
         <div id="post-settings">
-          <button onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
+          <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
           <EditPostModal post={post} user={postUser} />
-          <button onClick={() => copy(location)}>Copy Link</button>
-          <button onClick={() => setShowModal(false)}>Cancel</button>
+          <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
+          <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
         </div>
       </>
     );

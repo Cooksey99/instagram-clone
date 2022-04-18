@@ -8,10 +8,12 @@ export default function EditPostModal({ post, user }) {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Edit</button>
+            <button className='post-setting-tab' onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditPostForm post={post} user={user} setShowModal={setShowModal} />
+                    <div className="modal-border">
+                        <EditPostForm post={post} user={user} setShowModal={setShowModal} />
+                    </div>
                 </Modal>
             )}
         </>

@@ -4,6 +4,12 @@
     display: grid;
     grid-template-rows: repeat(4, 1fr);
 }
+.post-setting-tab {
+    border: var(--sp-border);
+}
+.post-setting-tab button {
+    all: unset;
+}
 
 .confirm-delete {
     position: fixed;
@@ -42,4 +48,11 @@
 button.delete {
     border-top: var(--sp-border);
     border-bottom: var(--sp-border);
+}
+.delete b{
+    color: #ED4956;
+}
+
+.modal-border {
+    border-radius: 10px;
 }
