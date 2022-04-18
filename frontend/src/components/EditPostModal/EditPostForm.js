@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchEditPosts } from '../../store/posts';
+import { fetchEditPosts, fetchPostData } from '../../store/posts';
 import './EditPostForm.css';
 
 export default function EditPostForm({ post, user, setShowModal }) {
@@ -23,15 +23,19 @@ export default function EditPostForm({ post, user, setShowModal }) {
             caption: postCaption
         }
         dispatch(fetchEditPosts(newPost));
+        dispatch(fetchPostData(post.id))
     }
 
     return (
         <>
             <section id='edit-post'>
                     <div id='edit-post-header'>
-                        <button onClick={() => setShowModal(false)}>Cancel</button>
+                        <button className='cancel-button' onClick={() => setShowModal(false)}>Cancel</button>
                         <h3>Edit Form</h3>
-                        <button onClick={handleEdit}>Done</button>
+                        <button className='done-button' onClick={() => {
+                            handleEdit();
+                            setShowModal(false);
+                        }}>Done</button>
                     </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
