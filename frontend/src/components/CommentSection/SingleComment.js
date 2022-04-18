@@ -24,8 +24,9 @@ export default function SingleComment({ comment, user, sessionUser }) {
             id: comment.id,
             post_id: comment.post_id,
             user_id: user.id,
-            comment: comment.comment
+            comment: commentText
         };
+
         dispatch(fetchEditComment(data))
     };
 

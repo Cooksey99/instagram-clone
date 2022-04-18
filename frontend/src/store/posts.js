@@ -114,6 +114,7 @@ export const fetchPostComment = (comment) => async dispatch => {
     };
 };
 export const fetchEditComment = (comment) => async dispatch => {
+    console.log('fetchEditComment', comment);
     const response = csrfFetch('/api/comment/editComment', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
