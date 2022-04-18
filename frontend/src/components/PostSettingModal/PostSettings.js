@@ -6,7 +6,7 @@ import { fetchFindUser } from "../../store/profile";
 import EditPostModal from "../EditPostModal";
 import './PostSettings.css'
 
-export default function PostSettings({ sessionUser, post }) {
+export default function PostSettings({ sessionUser, post, setShowModal }) {
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -40,7 +40,7 @@ export default function PostSettings({ sessionUser, post }) {
           <button onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
           <EditPostModal post={post} user={postUser} />
           <button onClick={() => copy(location)}>Copy Link</button>
-          <button>Cancel</button>
+          <button onClick={() => setShowModal(false)}>Cancel</button>
         </div>
       </>
     );

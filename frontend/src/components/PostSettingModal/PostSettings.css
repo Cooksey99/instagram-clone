@@ -1,6 +1,8 @@
 #post-settings {
     width: 400px;
     height: 250px;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .confirm-delete {

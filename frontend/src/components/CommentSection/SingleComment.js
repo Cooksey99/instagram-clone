@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import './SingleComment.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useDispatch } from "react-redux";
-import { fetchDeleteComment, fetchEditComment } from "../../store/posts";
+import { fetchDeleteComment, fetchEditComment, fetchPostData } from "../../store/posts";
 
-export default function SingleComment({ comment, user, sessionUser }) {
+export default function SingleComment({ comment, user, sessionUser, postId }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -14,7 +14,7 @@ export default function SingleComment({ comment, user, sessionUser }) {
     const [sameUser, setSameUser] = useState(sessionUser.id === user.id);
 
     useEffect(() => {
-        // console.log(editComment)
+        console.log('testing postId', postId)
     }, []);
 
     const handleEdit = (e) => {
@@ -27,12 +27,14 @@ export default function SingleComment({ comment, user, sessionUser }) {
             comment: commentText
         };
 
-        dispatch(fetchEditComment(data))
+        dispatch(fetchEditComment(data));
+
     };
 
     const handleDelete = () => {
-        console.log(comment.id)
+        // console.log(comment.id);
         dispatch(fetchDeleteComment(comment.id));
+
     };
 
     return (

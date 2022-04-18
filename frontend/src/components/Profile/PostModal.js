@@ -14,8 +14,9 @@ export default function PostModal({ post, user }) {
     const commentInfo = useSelector(state => state?.newsfeed?.singlePost);
     const sessionUser = useSelector(state => state?.session?.user);
 
+
     useEffect(() => {
-        dispatch(fetchPostData(post.id))
+        dispatch(fetchPostData(post.id));
     }, [dispatch])
 
     return (
@@ -37,7 +38,7 @@ export default function PostModal({ post, user }) {
                     </div>
                     {commentInfo?.length > 0 && commentInfo.map(comment => (
                         <div key={comment?.id}>
-                            <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} />
+                            <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
                         </div>
                     ))}
                     <CommentForm user={sessionUser} post={post} />
