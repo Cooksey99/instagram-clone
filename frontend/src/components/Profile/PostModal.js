@@ -36,6 +36,10 @@ export default function PostModal({ post, user }) {
                            <PostSettingModal post={post} user={user} />
                         </div>
                     </div>
+                    <div className='single-comment'>
+                        <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image'/>
+                        <p><b>{user.username} </b>{post.caption}</p>
+                    </div>
                     {commentInfo?.length > 0 && commentInfo.map(comment => (
                         <div key={comment?.id}>
                             <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />

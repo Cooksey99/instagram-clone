@@ -40,7 +40,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
     return (
         <>
             <section className="single-comment">
-                <img onClick={() => history.push(`/profile/${user?.id}`)}
+                <img className='profile-img' onClick={() => history.push(`/profile/${user?.id}`)}
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                 {!editComment && (
                     <div>
