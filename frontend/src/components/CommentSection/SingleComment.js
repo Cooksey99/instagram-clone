@@ -30,6 +30,7 @@ export default function SingleComment({ comment, user, sessionUser }) {
     };
 
     const handleDelete = () => {
+        console.log(comment.id)
         dispatch(fetchDeleteComment(comment.id));
     };
 

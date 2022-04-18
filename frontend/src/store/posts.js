@@ -125,7 +125,7 @@ export const fetchEditComment = (comment) => async dispatch => {
     };
 };
 export const fetchDeleteComment = (commentId) => async dispatch => {
-    const response = csrfFetch('/api/comment/delete', {
+    const response = csrfFetch(`/api/comment/delete/${commentId}`, {
         method: 'DELETE'
     });
     if (response.ok) {

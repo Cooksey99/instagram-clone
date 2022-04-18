@@ -19,8 +19,10 @@ router.put('/editComment', asyncHandler(async (req, res) => {
 
     res.json(result);
 }));
-router.delete('/delete', asyncHandler(async (req, res) => {
-    const { commentId } = req.body;
+router.delete('/delete/:commentId', asyncHandler(async (req, res) => {
+    const { commentId } = req.params;
+
+    console.log('\n\n\n' + commentId + '\n\n\n');
 
     const comment = await Comment.findByPk(commentId);
     await comment.destroy();
