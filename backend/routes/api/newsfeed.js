@@ -6,11 +6,14 @@ const router = express.Router();
 
 
 router.get('/', asyncHandler(async (req, res) => {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+        order: [['createdAt', 'ASC']]
+    });
 
     const data = await Promise.all(posts.map(async post => {
         const user = await User.findByPk(post.user_id);
 
+        console.log('\n\n\n' + post.id + '\n\n\n')
         const comments = await Comment.findAll({
             where: {
                 post_id: post.id
@@ -28,7 +31,6 @@ router.get('/', asyncHandler(async (req, res) => {
     }));
 
 
-    // console.log('\n\n\n' + data + '\n\n\n')
 
     res.json(data);
 }));

@@ -27,7 +27,10 @@ router.get('/:userId/posts', asyncHandler(async (req, res) => {
     const posts = await Post.findAll({
         where: {
             user_id: userId
-        }
+        },
+        order: [
+            ['createdAt', 'DESC']
+        ]
     });
 
     const data = posts.map(post => post);
