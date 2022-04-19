@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import newsfeed from './posts';
 import profile from './profile';
+import comment from './comment';
 
 const rootReducer = combineReducers({
   session,
   newsfeed,
-  profile
+  profile,
+  comment
 });
 
 let enhancer;

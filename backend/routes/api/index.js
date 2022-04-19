@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-const newsfeedRouter = require("./newsfeed.js")
-const profileRouter = require("./profile.js")
+const newsfeedRouter = require("./newsfeed.js");
+const profileRouter = require("./profile.js");
+const commentRouter = require("./comment.js");
 
 // // GET /api/set-token-cookie
 // const asyncHandler = require('express-async-handler');
@@ -44,5 +45,6 @@ router.use("/session", sessionRouter);
 router.use("/newsfeed", newsfeedRouter);
 router.use("/users", usersRouter);
 router.use("/profile", profileRouter);
+router.use("/comment", commentRouter);
 
 module.exports = router;

@@ -21,7 +21,7 @@ export default function PostSettingModal({ post }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PostSettings sessionUser={sessionUser} post={post} />
+                    <PostSettings sessionUser={sessionUser} post={post} setShowModal={setShowModal} />
                 </Modal>
             )}
         </>

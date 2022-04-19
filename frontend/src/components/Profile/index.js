@@ -4,11 +4,9 @@ import './Profile.css'
 import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
-import { Modal } from "../../context/Modal";
-import PostModal from "./PostModal";
-import { stepButtonClasses } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { fetchFindUser } from "../../store/profile";
+import ProfilePost from "./ProfilePost";
 
 export default function Profile() {
 
@@ -19,12 +17,12 @@ export default function Profile() {
     const [modalPost, setModalPost] = useState({});
 
     const user = useSelector(state => state?.profile?.user);
-    const posts = useSelector(state => state?.newsfeed?.posts)
+    const userPosts = useSelector(state => state?.newsfeed?.userPosts)
 
     useEffect(() => {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
-        console.log(id)
+        // console.log('Profile', userPosts)
     }, [dispatch])
 
     return (
@@ -43,7 +41,7 @@ export default function Profile() {
                             <button><SettingsIcon /></button>
                         </div>
                         <div className="main-tab middle-tab">
-                            <p><b>{posts?.length}</b> posts</p>
+                            <p><b>{userPosts?.length}</b> posts</p>
                             <p><b>0</b> followers</p>
                             <p><b>0</b> following</p>
                         </div>
@@ -65,24 +63,16 @@ export default function Profile() {
 
                 {/* Area that displays all of the images/posts */}
                 <div id='all-posts'>
-                    {posts?.length > 0 && posts.map(post => (
-                        <div key={post?.id} className="single-post-image"
-                            onClick={() => {
-                                setShowModal(true);
-                                setModalPost(post);
-                            }}>
-                            <img src={post?.image} />
+                    {userPosts?.length > 0 && userPosts.map(post => (
+                        <div key={post?.id}>
+                            <ProfilePost post={post} user={user} comments={post.comments} />
                         </div>
                     ))}
                 </div>
 
 
             </section>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <PostModal post={modalPost} user={user} />
-                </Modal>
-            )}
+
         </>
     )
 }

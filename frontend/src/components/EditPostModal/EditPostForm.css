@@ -4,10 +4,21 @@
     height: 70vh;
 }
 #edit-post-header {
+    height: 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: var(--sp-border);
 }
+#edit-post-header button {
+    all: unset;
+    margin: 20px;
+}
+.done-button {
+    color: #0095f6;
+    background-color: pink;
+}
+
 #edit-post-modal {
     width: 120vh;
     height: 80vh;

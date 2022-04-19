@@ -31,6 +31,9 @@ function App() {
       {isLoaded && (
         <div id='app'>
           <Switch>
+            <Route path='/' exact>
+              <Redirect to='/newsfeed' />
+            </Route>
             <Route path='/login' >
               <LoginFormPage />
             </Route>
