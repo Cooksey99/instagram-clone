@@ -109,21 +109,24 @@ export const fetchPostComment = (comment) => async dispatch => {
         body: JSON.stringify(comment)
     });
     if (response.ok) {
+        // console.log('postComment', response);
         const data = response.json();
         dispatch(postComment(data));
     };
 };
-export const fetchEditComment = (comment) => async dispatch => {
-    console.log('fetchEditComment', comment);
-    const response = csrfFetch('/api/comment/editComment', {
+export const fetchEditComment = (comment, commentId) => async dispatch => {
+    const response = csrfFetch(`/api/comment/editComment/${commentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
-    if (response.ok) {
-        const data = response.json();
-        dispatch(editComment(data));
-    };
+
+    // if (response.ok) {
+        // const data = response.json();
+
+        console.log('fetchEditComment', response);
+        dispatch(editComment(response));
+    // }
 };
 export const fetchDeleteComment = (commentId) => async dispatch => {
     const response = csrfFetch(`/api/comment/delete/${commentId}`, {
@@ -163,10 +166,18 @@ export default function reducer(state = initialState, action) {
             newState.singlePost.comment.commendId = action.comment;
             return newState;
         case EDIT_COMMENT:
-            newState.singlePost.comment[action.comment.id] = action.comment;
+            // console.log('edit', action.comment)
+            // newState.singlePost.comment[action.comment.id] = action.comment;
             return newState;
         case DELETE_POST:
-            delete newState.singlePost.comment[action.comment.id];
+            let array = newState.singlePost;
+            array.forEach(ele => {
+                if (ele.comment.id === commendId) {
+                    delete array.ele;
+                }
+            })
+            // delete newState.singlePost.comment[action.comment.id];
+            newState.singlePost = array;
             return newState;
         default:
             return state;

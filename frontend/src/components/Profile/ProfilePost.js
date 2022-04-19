@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
+import { fetchPostData } from "../../store/posts";
 import PostModal from "./PostModal";
 
-export default function ProfilePost({ post, user, comments }) {
+export default function ProfilePost({ post, user }) {
 
+    const dispatch = useDispatch();
+    const commentsObj = useSelector(state => state?.newsfeed?.singlePost);
     const [showModal, setShowModal] = useState(false);
     const [modalPost, setModalPost] = useState({});
 
     useEffect(() => {
-        // console.log('ProfilePost', comments)
-    }, [])
+        dispatch(fetchPostData(post.id));
+    }, [dispatch])
 
     return (
         <>
@@ -22,7 +26,7 @@ export default function ProfilePost({ post, user, comments }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PostModal post={modalPost} user={user} />
+                    <PostModal post={modalPost} user={user} commentsObj={commentsObj} />
                 </Modal>
             )}
         </>

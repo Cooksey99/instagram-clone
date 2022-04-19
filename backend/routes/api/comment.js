@@ -9,13 +9,15 @@ router.post('/newComment', asyncHandler(async (req, res) => {
 
     res.json(comment);
 }));
-router.put('/editComment', asyncHandler(async (req, res) => {
-    const { id, post_id, user_id, comment } = req.body;
+router.put('/editComment/:commentId', asyncHandler(async (req, res) => {
+    const { commentId } = req.params;
 
-    const result = await Comment.findByPk(id);
+    const result = await Comment.findByPk(commentId);
 
-    result.set({ post_id, user_id, comment });
+    result.set(req.body);
     await result.save();
+
+    // console.log('\n\n\n' + result.comment + '\n\n\n');
 
     res.json(result);
 }));

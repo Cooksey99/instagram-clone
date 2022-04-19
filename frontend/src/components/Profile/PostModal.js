@@ -7,13 +7,11 @@ import { fetchPostData } from '../../store/posts';
 import SingleComment from '../CommentSection/SingleComment';
 import CommentForm from '../CommentSection/CommentForm';
 
-export default function PostModal({ post, user }) {
+export default function PostModal({ post, user, commentsObj }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const commentInfo = useSelector(state => state?.newsfeed?.singlePost);
     const sessionUser = useSelector(state => state?.session?.user);
-
 
     useEffect(() => {
         dispatch(fetchPostData(post.id));
@@ -40,7 +38,7 @@ export default function PostModal({ post, user }) {
                         <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image'/>
                         <p><b>{user.username} </b>{post.caption}</p>
                     </div>
-                    {commentInfo?.length > 0 && commentInfo.map(comment => (
+                    {commentsObj?.length > 0 && commentsObj.map(comment => (
                         <div key={comment?.id}>
                             <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
                         </div>

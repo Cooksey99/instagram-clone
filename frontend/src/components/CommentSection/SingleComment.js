@@ -9,32 +9,33 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const [finalComment, setFinalComment] = useState(comment.comment);
     const [editComment, setEditComment] = useState(false);
     const [commentText, setCommentText] = useState(comment.comment);
     const [sameUser, setSameUser] = useState(sessionUser.id === user.id);
 
     useEffect(() => {
-        console.log('testing postId', postId)
+        // console.log('testing postId', postId)
     }, []);
 
     const handleEdit = (e) => {
         e.preventDefault();
-
+        let commentId = comment.id;
         const data = {
-            id: comment.id,
             post_id: comment.post_id,
             user_id: user.id,
             comment: commentText
         };
 
-        dispatch(fetchEditComment(data));
-
+        dispatch(fetchEditComment(data, commentId));
+        dispatch(fetchPostData(postId));
+        // setFinalComment(commentText);
     };
 
     const handleDelete = () => {
         // console.log(comment.id);
         dispatch(fetchDeleteComment(comment.id));
-
+        dispatch(fetchPostData(postId));
     };
 
     return (
@@ -44,7 +45,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                 {!editComment && (
                     <div>
-                        <p><b>{user?.username}</b> {comment.comment}</p>
+                        <p><b>{user?.username}</b> {finalComment}</p>
                     </div>
 
                 )}
@@ -60,7 +61,6 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                             <button type="button" onClick={handleDelete}>Delete</button>
                             <button type="submit">Save</button>
                         </div>
-
                     </form>
                 )}
                 {sameUser && (
