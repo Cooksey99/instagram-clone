@@ -17,12 +17,12 @@ export default function EditPostForm({ post, user, setShowModal }) {
     }, [])
 
     const handleEdit = (e) => {
+        let id = post.id;
         let newPost = {
-            id: post.id,
             image: post.image,
             caption: postCaption
         }
-        dispatch(fetchEditPosts(newPost));
+        dispatch(fetchEditPosts(newPost, id));
         dispatch(fetchPostData(post.id))
     }
 

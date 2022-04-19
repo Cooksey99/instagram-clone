@@ -7,7 +7,7 @@ export default function CommentForm({ user, post }) {
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         let commentData = {
@@ -17,15 +17,16 @@ export default function CommentForm({ user, post }) {
         }
 
         dispatch(fetchPostComment(commentData));
-        setComment('');
         dispatch(fetchPostData(post.id));
+        setComment('');
     }
 
     return (
         <>
             <section>
                 <form className="comment-form" onSubmit={handleSubmit}>
-                    <textarea placeholder="Add a comment..."
+                    <textarea placeholder="Add a comment..." required
+                        value={comment}
                         onChange={(e) => setComment(e.target.value)} />
                     <button className="submit-comment" type='submit'>Post</button>
                 </form>

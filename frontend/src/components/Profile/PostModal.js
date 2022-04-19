@@ -15,6 +15,7 @@ export default function PostModal({ post, user, commentsObj }) {
 
     useEffect(() => {
         dispatch(fetchPostData(post.id));
+        console.log('testing', commentsObj)
     }, [dispatch])
 
     return (

@@ -11,13 +11,14 @@ router.post('/newPost', asyncHandler(async (req, res) => {
 
 }));
 
-router.put('/editPost', asyncHandler(async (req, res) => {
-    const { id } = req.body;
+router.put('/editPost/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
     const post = await Post.findByPk(id);
 
     post.set(req.body);
     await post.save();
+
     res.json(post);
 }));
 
@@ -46,7 +47,10 @@ router.get('/post/:postId', asyncHandler(async (req, res) => {
     const commentList = await Comment.findAll({
         where: {
             post_id: postId
-        }
+        },
+        order: [
+            ['createdAt', 'ASC']
+        ]
     })
 
     const comments = await Promise.all(commentList.map(async comment => {
