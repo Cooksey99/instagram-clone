@@ -11,8 +11,7 @@ export default function NewsfeedPage({ user }) {
 
     useEffect(() => {
         dispatch(fetchGetPosts())
-        console.log('CHANGED')
-    }, [dispatch, SinglePost])
+    }, [dispatch])
 
     return (
         <>
