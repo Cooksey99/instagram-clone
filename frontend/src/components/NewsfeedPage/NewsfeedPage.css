@@ -87,6 +87,7 @@
 }
 #fixed-sidebar {
     position: fixed;
+    z-index: -1;
 }
 #profile-sidebar-tab {
     margin-top: 50px;
