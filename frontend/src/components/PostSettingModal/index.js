@@ -4,7 +4,7 @@ import { Modal } from '../../context/Modal';
 import PostSettings from "./PostSettings";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-export default function PostSettingModal({ post }) {
+export default function PostSettingModal({ post, setPostCaption }) {
     const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector(state => state?.session?.user);
     const postUser = useSelector(state => state?.profile?.user);
@@ -21,7 +21,7 @@ export default function PostSettingModal({ post }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PostSettings sessionUser={sessionUser} post={post} setShowModal={setShowModal} />
+                    <PostSettings sessionUser={sessionUser} post={post} setShowModal={setShowModal} setPostCaption={setPostCaption} />
                 </Modal>
             )}
         </>

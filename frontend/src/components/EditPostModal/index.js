@@ -3,7 +3,7 @@ import { Modal } from "../../context/Modal";
 import EditPostForm from "./EditPostForm";
 
 
-export default function EditPostModal({ post, user }) {
+export default function EditPostModal({ post, user, setPostCaption }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ export default function EditPostModal({ post, user }) {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div className="modal-border">
-                        <EditPostForm post={post} user={user} setShowModal={setShowModal} />
+                        <EditPostForm post={post} user={user} setShowModal={setShowModal} setPostCaption={setPostCaption} />
                     </div>
                 </Modal>
             )}

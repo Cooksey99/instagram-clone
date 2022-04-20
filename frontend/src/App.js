@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
 import Profile from './components/Profile';
 import NewsfeedPage from './components/NewsfeedPage';
+import PostPageSolo from './components/Profile/PostPageSolo';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state?.session?.user);
@@ -32,21 +33,24 @@ function App() {
         <div id='app'>
           <Switch>
             <Route path='/' exact>
-              <Redirect to='/newsfeed' />
+              <Redirect to='/newsfeed' exact/>
             </Route>
-            <Route path='/login' >
+            <Route path='/login' exact>
               <LoginFormPage />
             </Route>
-            <Route path='/signup'>
+            <Route path='/signup' exact>
               <SignupFormPage />
             </Route>
-            <Route path='/profile/:id'>
+            <Route path='/profile/:id' exact>
               <Profile />
             </Route>
-            <Route path='/profile'>
+            <Route path='/profile' exact>
               <Profile />
             </Route>
-            <Route path='/newsfeed'>
+            {/* <Route path='/profile/post/:postId' exact>
+              <PostPageSolo />
+            </Route> */}
+            <Route path='/newsfeed' exact>
               <NewsfeedPage user={user} />
             </Route>
           </Switch>

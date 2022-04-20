@@ -81,7 +81,7 @@ export const fetchEditPosts = (post, id) => async dispatch => {
     });
 
     if (response.ok) {
-        const data = response.json();
+        const data = await response.json();
         dispatch(editPost(data));
     }
 };
@@ -94,12 +94,10 @@ export const fetchDeletePost = (postId) => async dispatch => {
 export const fetchPostData = (postId) => async dispatch => {
     const response = await csrfFetch(`/api/profile/post/${postId}`);
 
-    const data = response.json()
-
-    data.then(res => res).then(final => dispatch(getPostInfo(final)))
+    const data = await response.json()
 
     // console.log(value)
-    // dispatch(getPostInfo(data))
+    dispatch(getPostInfo(data))
 };
 
 export const fetchPostComment = (comment) => async dispatch => {
@@ -149,8 +147,23 @@ export default function reducer(state = initialState, action) {
             newState.userPosts = action.posts;
             return newState;
         case EDIT_POST:
-            newState.posts[action.post.id] = action.post;
-            return newState;
+
+            for (let i = 0; i < newState.posts.length; i++) {
+                if (newState.posts[i].post.id === action.post.id) {
+                    console.log('editPostReducer', action.post);
+                    newState.posts[i].post = action.post;
+                    return newState;
+                }
+            }
+
+            // for (let i = 0; i < newState.userPosts.length; i++) {
+
+            //     if (newState.userPosts[i].id === action.post.id) {
+            //         newState.userPosts[i] = action.post;
+            //         // console.log('userPosts', newState.userPosts[i]);
+            //         return newState;
+            //     };
+            // };
         case DELETE_POST:
             delete newState.posts[action.postId];
             return newState;
@@ -177,8 +190,8 @@ export default function reducer(state = initialState, action) {
                     newState.singlePost[i].comment = action.comment;
                     console.log('edit', newState)
                     return newState;
-                }
-            }
+                };
+            };
         case DELETE_COMMENT:
             for (let i = 0; i < newState.singlePost.length; i++) {
                 if (newState.singlePost[i].comment.id === action.commentId) {
@@ -186,8 +199,8 @@ export default function reducer(state = initialState, action) {
                     delete newState.singlePost[i];
                     console.log('deleteReducer', newState.singlePost[i])
                     return newState;
-                }
-            }
+                };
+            };
         default:
             return state;
     }

@@ -1,17 +1,20 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Link } from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'; import './NewsfeedPage.css'
 import PostSettingModal from "../PostSettingModal";
+import { fetchGetPosts, fetchPostData } from "../../store/posts";
 
 export default function SinglePost({ post }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    // const [postCaption, setPostCaption] = useState(post?.post?.caption);
 
     useEffect(() => {
-
-    }, [])
+        dispatch(fetchGetPosts());
+        // dispatch(fetchPostData(post.id));
+    }, [dispatch])
 
     return (
         <>
