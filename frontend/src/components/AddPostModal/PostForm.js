@@ -9,14 +9,26 @@ export default function PostForm({ user }) {
     const dispatch = useDispatch();
     const [image, setImage] = useState('');
     const [caption, setCaption] = useState('');
+    const [error, setError] = useState(null);
 
-    const handleSubmit = () => {
-        const data = {
-            user_id: user.id,
-            image,
-            caption
+    function testImage(url) {
+        return /(jpg|jpeg|png|webp|avif|gif|svg)/g.test(url);
+    }
+    const handleSubmit = (e) => {
+        console.log(testImage(image))
+        if (testImage(image)) {
+            const data = {
+                user_id: user.id,
+                image,
+                caption
+            }
+
+            dispatch(fetchCreatePost(data));
+        } else {
+            e.preventDefault();
+            console.log(error)
+            setError('Please enter a valid image URL.');
         }
-        dispatch(fetchCreatePost(data));
     }
 
     return (
@@ -26,13 +38,20 @@ export default function PostForm({ user }) {
                 <hr />
                 {/* <h3>Drag photos and videos here</h3>
                 <button>Select from computer</button> */}
-                <form onSubmit={handleSubmit}>
-                    <input placeholder="Image URL" required
+                <form onSubmit={handleSubmit} id='new-post-form'>
+                    {!error && (
+                         <input placeholder="Image URL" required
+                         onChange={(e) => setImage(e.target.value)} />
+                    )}
+                    {error && (
+                        <input className='error' placeholder={error} required
                         onChange={(e) => setImage(e.target.value)} />
+                    )}
                     <textarea placeholder="Caption" required
                         onChange={(e) => setCaption(e.target.value)} />
                     <button type="submit">Create Post</button>
                 </form>
+
             </div>
         </>
     )

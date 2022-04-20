@@ -1,0 +1,21 @@
+#signup-container {
+    height: 560px;
+    width: 350px;
+    /* background-color: coral; */
+    border: var(--sp-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+#signup-container h3{
+    text-align: center;
+    color: #8e8e8e;
+    width: 85%;
+}
+.signup-center {
+    margin: 16px auto !important;
+}
+#sign-up-link a {
+    color: var(--sp-button-blue);
+}
