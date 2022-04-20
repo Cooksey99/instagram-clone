@@ -15,7 +15,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
 
     useEffect(() => {
         // console.log('testing userId\'s', sessionUser?.id, user?.id)
-        dispatch(fetchPostData(postId));
+        // dispatch(fetchPostData(postId));
     }, [dispatch]);
 
     const handleEdit = (e) => {

@@ -12,7 +12,7 @@ export default function SinglePost({ post }) {
     // const [postCaption, setPostCaption] = useState(post?.post?.caption);
 
     useEffect(() => {
-        dispatch(fetchGetPosts());
+        // dispatch(fetchGetPosts());
         // dispatch(fetchPostData(post.id));
     }, [dispatch])
 

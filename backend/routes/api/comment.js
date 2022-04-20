@@ -31,6 +31,21 @@ router.delete('/delete/:commentId', asyncHandler(async (req, res) => {
 
     res.json();
 }));
+router.get('/:postId/all', asyncHandler(async (req, res) => {
+    const { postId } = req.params;
+
+    const comments = await Comment.findAll({
+        where: {
+            post_id: postId
+        },
+        order: [
+            ['createdAt', 'DESC']
+        ]
+    });
+
+    const data = comments.map(comment => comment);
+    res.json(data);
+}))
 
 
 

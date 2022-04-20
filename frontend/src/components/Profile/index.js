@@ -23,7 +23,7 @@ export default function Profile() {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
         // console.log('Profile', userPosts)
-    }, [dispatch])
+    }, [dispatch, id])
 
     return (
         <>
@@ -65,7 +65,8 @@ export default function Profile() {
                 <div id='all-posts'>
                     {userPosts?.length > 0 && userPosts.map(post => (
                         <div key={post?.id}>
-                            <ProfilePost post={post} user={user} comments={post.comments} />
+                            {/* {console.log(post.caption)} */}
+                            <ProfilePost post={post} user={user} />
                         </div>
                     ))}
                 </div>
