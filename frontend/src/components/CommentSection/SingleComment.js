@@ -9,17 +9,18 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const [finalComment, setFinalComment] = useState(comment.comment);
     const [editComment, setEditComment] = useState(false);
-    const [commentText, setCommentText] = useState(comment.comment);
-    const [sameUser, setSameUser] = useState(sessionUser.id === user.id);
+    const [commentText, setCommentText] = useState(comment?.comment);
+    const [sameUser, setSameUser] = useState(sessionUser?.id === user?.id);
 
     useEffect(() => {
-        // console.log('testing postId', postId)
-    }, []);
+        // console.log('testing userId\'s', sessionUser?.id, user?.id)
+        dispatch(fetchPostData(postId));
+    }, [dispatch]);
 
     const handleEdit = (e) => {
         e.preventDefault();
+
         let commentId = comment.id;
         const data = {
             post_id: comment.post_id,
@@ -28,7 +29,9 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
         };
 
         dispatch(fetchEditComment(data, commentId));
-        dispatch(fetchPostData(postId));
+        // dispatch(fetchPostData(postId));
+        setEditComment(false)
+
         // setFinalComment(commentText);
     };
 
@@ -45,7 +48,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                 {!editComment && (
                     <div>
-                        <p><b>{user?.username}</b> {finalComment}</p>
+                        <p><b>{user?.username}</b> {commentText}</p>
                     </div>
 
                 )}

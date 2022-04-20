@@ -73,15 +73,15 @@ export const fetchCreatePost = (postData) => async dispatch => {
     };
 
 };
-export const fetchEditPosts = (post) => async dispatch => {
-    const response = await csrfFetch('/api/profile/editPost', {
+export const fetchEditPosts = (post, id) => async dispatch => {
+    const response = await csrfFetch(`/api/profile/editPost/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(post)
     });
 
     if (response.ok) {
-        const data = response.json();
+        const data = await response.json();
         dispatch(editPost(data));
     }
 };
@@ -94,48 +94,45 @@ export const fetchDeletePost = (postId) => async dispatch => {
 export const fetchPostData = (postId) => async dispatch => {
     const response = await csrfFetch(`/api/profile/post/${postId}`);
 
-    const data = response.json()
-
-    data.then(res => res).then(final => dispatch(getPostInfo(final)))
+    const data = await response.json()
 
     // console.log(value)
-    // dispatch(getPostInfo(data))
+    dispatch(getPostInfo(data))
 };
 
 export const fetchPostComment = (comment) => async dispatch => {
-    const response = csrfFetch('/api/comment/newComment', {
+    const response = await csrfFetch('/api/comment/newComment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
+    // console.log('fetchPostComment', response);
+
     if (response.ok) {
         // console.log('postComment', response);
-        const data = response.json();
+        const data = await response.json();
         dispatch(postComment(data));
     };
 };
 export const fetchEditComment = (comment, commentId) => async dispatch => {
-    const response = csrfFetch(`/api/comment/editComment/${commentId}`, {
+    const response = await csrfFetch(`/api/comment/editComment/${commentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
 
-    // if (response.ok) {
-        // const data = response.json();
+    if (response.ok) {
+        const data = await response.json();
 
         console.log('fetchEditComment', response);
-        dispatch(editComment(response));
-    // }
+        dispatch(editComment(data));
+    }
 };
 export const fetchDeleteComment = (commentId) => async dispatch => {
-    const response = csrfFetch(`/api/comment/delete/${commentId}`, {
+    await csrfFetch(`/api/comment/delete/${commentId}`, {
         method: 'DELETE'
     });
-    if (response.ok) {
-        const data = response.json();
-        dispatch(deleteComment(data));
-    };
+    dispatch(deleteComment(commentId));
 };
 
 const initialState = { posts: {}, userPosts: {}, singlePost: {} };
@@ -150,8 +147,23 @@ export default function reducer(state = initialState, action) {
             newState.userPosts = action.posts;
             return newState;
         case EDIT_POST:
-            newState.posts[action.post.id] = action.post;
-            return newState;
+
+            for (let i = 0; i < newState.posts.length; i++) {
+                if (newState.posts[i].post.id === action.post.id) {
+                    console.log('editPostReducer', action.post);
+                    newState.posts[i].post = action.post;
+                    return newState;
+                }
+            }
+
+            // for (let i = 0; i < newState.userPosts.length; i++) {
+
+            //     if (newState.userPosts[i].id === action.post.id) {
+            //         newState.userPosts[i] = action.post;
+            //         // console.log('userPosts', newState.userPosts[i]);
+            //         return newState;
+            //     };
+            // };
         case DELETE_POST:
             delete newState.posts[action.postId];
             return newState;
@@ -161,24 +173,34 @@ export default function reducer(state = initialState, action) {
         //
         // Comment section
         case POST_COMMENT:
-            const commendId = action.comment.id;
-            // console.log('\n\n\n' + commendId + '\n\n\n');
-            newState.singlePost.comment.commendId = action.comment;
+            // console.log('\n\n\n' + newState.singlePost.comment + '\n\n\n');
+            // newState.singlePost.comment[action.comment.id] = action.comment;
+            // for (let i = 0; i <= newState.singlePost.length; i++) {
+            //     if (i === newState.singlePost.length) {
+            //         newState.singlePost[i] = action.comment;
+            //         // console.log('edit', newState.singlePost)
+            //         return newState;
+            //     }
+            // }
             return newState;
         case EDIT_COMMENT:
-            // console.log('edit', action.comment)
-            // newState.singlePost.comment[action.comment.id] = action.comment;
-            return newState;
-        case DELETE_POST:
-            let array = newState.singlePost;
-            array.forEach(ele => {
-                if (ele.comment.id === commendId) {
-                    delete array.ele;
-                }
-            })
-            // delete newState.singlePost.comment[action.comment.id];
-            newState.singlePost = array;
-            return newState;
+            for (let i = 0; i < newState.singlePost.length; i++) {
+                if (newState.singlePost[i].comment.id === action.comment.id) {
+
+                    newState.singlePost[i].comment = action.comment;
+                    console.log('edit', newState)
+                    return newState;
+                };
+            };
+        case DELETE_COMMENT:
+            for (let i = 0; i < newState.singlePost.length; i++) {
+                if (newState.singlePost[i].comment.id === action.commentId) {
+
+                    delete newState.singlePost[i];
+                    console.log('deleteReducer', newState.singlePost[i])
+                    return newState;
+                };
+            };
         default:
             return state;
     }

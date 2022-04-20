@@ -1,7 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import './PostModal.css';
 import PostSettingModal from '../PostSettingModal';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostData } from '../../store/posts';
 import SingleComment from '../CommentSection/SingleComment';
@@ -15,6 +15,7 @@ export default function PostModal({ post, user, commentsObj }) {
 
     useEffect(() => {
         dispatch(fetchPostData(post.id));
+        console.log('testing', commentsObj)
     }, [dispatch])
 
     return (
@@ -31,7 +32,7 @@ export default function PostModal({ post, user, commentsObj }) {
                             <Link to={`/profile/${user?.id}`}>{user?.username}</Link>
                         </div>
                         <div className='dot-menu'>
-                           <PostSettingModal post={post} user={user} />
+                           <PostSettingModal post={post} />
                         </div>
                     </div>
                     <div className='single-comment'>

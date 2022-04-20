@@ -12,19 +12,24 @@ export default function EditPostForm({ post, user, setShowModal }) {
 
     const [postCaption, setPostCaption] = useState(post.caption);
 
-    useEffect(() => {
-        console.log('location', location.pathname)
-    }, [])
 
-    const handleEdit = (e) => {
+    const handleEdit = async (e) => {
+        let id = post.id;
         let newPost = {
-            id: post.id,
             image: post.image,
             caption: postCaption
         }
-        dispatch(fetchEditPosts(newPost));
-        dispatch(fetchPostData(post.id))
+        dispatch(fetchEditPosts(newPost, id));
+        await setPostCaption(postCaption);
+        dispatch(fetchPostData(post.id));
     }
+
+    useEffect(() => {
+        // console.log('location', location.pathname)
+        // console.log('postCaption', postCaption)
+        console.log('post', post.caption)
+        // dispatch(fetchPostData);
+    }, [handleEdit])
 
     return (
         <>

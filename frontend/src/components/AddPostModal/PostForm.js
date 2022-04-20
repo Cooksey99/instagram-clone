@@ -27,9 +27,9 @@ export default function PostForm({ user }) {
                 {/* <h3>Drag photos and videos here</h3>
                 <button>Select from computer</button> */}
                 <form onSubmit={handleSubmit}>
-                    <input placeholder="Image URL"
+                    <input placeholder="Image URL" required
                         onChange={(e) => setImage(e.target.value)} />
-                    <textarea placeholder="Caption"
+                    <textarea placeholder="Caption" required
                         onChange={(e) => setCaption(e.target.value)} />
                     <button type="submit">Create Post</button>
                 </form>
