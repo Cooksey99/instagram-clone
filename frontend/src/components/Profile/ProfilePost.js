@@ -12,7 +12,7 @@ export default function ProfilePost({ post, user }) {
     const [modalPost, setModalPost] = useState({});
 
     useEffect(() => {
-        dispatch(fetchPostData(post.id));
+        // dispatch(fetchPostData(post.id));
     }, [dispatch])
 
     return (
@@ -21,6 +21,7 @@ export default function ProfilePost({ post, user }) {
                 onClick={() => {
                     setShowModal(true);
                     setModalPost(post);
+                    dispatch(fetchPostData(post.id))
                 }}>
                 <img src={post?.image} />
             </div>

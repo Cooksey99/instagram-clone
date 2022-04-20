@@ -7,15 +7,16 @@ import { fetchPostData } from '../../store/posts';
 import SingleComment from '../CommentSection/SingleComment';
 import CommentForm from '../CommentSection/CommentForm';
 
-export default function PostModal({ post, user, commentsObj }) {
+export default function PostModal({ post, user }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state?.session?.user);
+    const commentsObj = useSelector(state => state?.newsfeed?.singlePost);
 
-    useEffect(() => {
-        dispatch(fetchPostData(post.id));
-        console.log('testing', commentsObj)
+    useEffect(async () => {
+        await dispatch(fetchPostData(post.id));
+        // console.log(post.caption ,'============', sessionUser.id)
     }, [dispatch])
 
     return (
@@ -41,6 +42,7 @@ export default function PostModal({ post, user, commentsObj }) {
                     </div>
                     {commentsObj?.length > 0 && commentsObj.map(comment => (
                         <div key={comment?.id}>
+                            {console.log(comment.comment.comment)}
                             <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
                         </div>
                     ))}

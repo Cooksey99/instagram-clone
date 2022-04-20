@@ -11,11 +11,13 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
     const history = useHistory();
     const [editComment, setEditComment] = useState(false);
     const [commentText, setCommentText] = useState(comment?.comment);
-    const [sameUser, setSameUser] = useState(sessionUser?.id === user?.id);
+    const [sameUser, setSameUser] = useState(sessionUser?.id === comment?.user_id);
 
-    useEffect(() => {
+    useEffect(async () => {
         // console.log('testing userId\'s', sessionUser?.id, user?.id)
-        dispatch(fetchPostData(postId));
+        // console.log(comment.comment ,'---comment============comment.user_id---', comment.user_id)
+        console.log('------', comment.comment)
+        // await dispatch(fetchPostData(postId));
     }, [dispatch]);
 
     const handleEdit = (e) => {
@@ -48,14 +50,14 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                 {!editComment && (
                     <div>
-                        <p><b>{user?.username}</b> {commentText}</p>
+                        <p><b>{user?.username}</b> {comment?.comment}</p>
                     </div>
 
                 )}
                 {editComment && (
                     <form onSubmit={handleEdit}>
                         <div className="edit-comment-popup"><b>{user?.username}</b>
-                            <textarea value={commentText}
+                            <textarea value={commentText} required
                                 onChange={(e) => setCommentText(e.target.value)} />
                         </div>
                         <div className="edit-buttons">
@@ -66,7 +68,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                         </div>
                     </form>
                 )}
-                {sameUser && (
+                {comment?.user_id === sessionUser?.id && (
                     <MoreHorizIcon onClick={() => setEditComment(true)} />
                 )}
             </section>
