@@ -1,8 +1,14 @@
-#post-settings {
+#post-settings-user {
     width: 400px;
     height: 250px;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
+}
+#post-settings-no-user {
+    width: 400px;
+    height: 125px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
 }
 .post-setting-tab {
     border: var(--sp-border);

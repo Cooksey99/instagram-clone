@@ -36,7 +36,7 @@ export default function PostSettings({ sessionUser, post, setShowModal }) {
   if (currentUser) {
     modalContent = (
       <>
-        <div id="post-settings">
+        <div id="post-settings-user">
           <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
           <EditPostModal post={post} user={postUser} />
           <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
@@ -47,8 +47,9 @@ export default function PostSettings({ sessionUser, post, setShowModal }) {
   } else {
     modalContent = (
       <>
-        <div>
-
+        <div id="post-settings-no-user">
+          <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
+          <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
         </div>
       </>
     );
@@ -60,7 +61,7 @@ export default function PostSettings({ sessionUser, post, setShowModal }) {
         {modalContent}
       </section>
       {confirmDelete && (
-        <div  className="confirm-delete">
+        <div className="confirm-delete">
           <div className='delete-pop-background'>
             <h3>Delete Post?</h3>
             <p>Are you sure you want to delete this post?</p>
