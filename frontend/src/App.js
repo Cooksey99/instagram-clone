@@ -17,29 +17,34 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    console.log(isLoaded)
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {user && <Navigation isLoaded={isLoaded} />}
       {/* <button onClick={() => setShowModal(true)}>Modal</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <h1>Hello I am a Modal</h1>
+        <h1>Hello I am a Modal</h1>
         </Modal>
       )} */}
+
 
       {isLoaded && (
         <div id='app'>
           <Switch>
-            <Route path='/' exact>
-              <Redirect to='/newsfeed' exact/>
-            </Route>
             <Route path='/login' exact>
               <LoginFormPage />
             </Route>
             <Route path='/signup' exact>
               <SignupFormPage />
+            </Route>
+            {!user && (
+              <Redirect from='*' to='/login' />
+            )}
+            <Route path='/' exact>
+              <Redirect to='/newsfeed' exact />
             </Route>
             <Route path='/profile/:id' exact>
               <Profile />
@@ -53,6 +58,12 @@ function App() {
             <Route path='/newsfeed' exact>
               <NewsfeedPage user={user} />
             </Route>
+
+            <Redirect from='*' to='404'>
+              <Route path='/404' exact>
+              </Route>
+            </Redirect>
+
           </Switch>
         </div>
       )}

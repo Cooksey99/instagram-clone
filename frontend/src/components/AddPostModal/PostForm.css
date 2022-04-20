@@ -1,4 +1,34 @@
 #new-post-modal {
     width: 500px;
     height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+#new-post-modal form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
+}
+#new-post-form textarea {
+    resize: none;
+    height: 120px;
+}
+#new-post-form input {
+    height: 36px;
+}
+#new-post-form button {
+    border: none;
+    border-radius: 10px;
+    background: var(--sp-button-blue);
+    height: 32px;
+    width: 120px;
+    margin: auto;
+    color: white;
+}
+.error::placeholder {
+    color: red;
 }
