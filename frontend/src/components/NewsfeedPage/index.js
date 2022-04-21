@@ -19,7 +19,7 @@ export default function NewsfeedPage({ user }) {
                 <div id="newsfeed-container">
                     {posts.length > 0 && posts.map(post => (
                         <div key={post.id}>
-                            <SinglePost post={post} />
+                            <SinglePost post={post} user={user} />
                         </div>
                     ))}
                 </div>

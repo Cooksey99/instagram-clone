@@ -63,6 +63,7 @@ function LoginFormPage() {
                 placeholder="Username or Email"
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
+                maxLength='256'
                 required
               />
 
@@ -71,6 +72,7 @@ function LoginFormPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                maxLength='60'
                 required
               />
               <button type="submit">Log In</button>

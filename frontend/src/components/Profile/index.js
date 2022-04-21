@@ -23,7 +23,7 @@ export default function Profile() {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
         // console.log('Profile', userPosts)
-    }, [dispatch])
+    }, [dispatch, id])
 
     return (
         <>

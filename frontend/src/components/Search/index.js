@@ -9,7 +9,8 @@ export default function Search() {
             <form>
                 <div id='search-component'>
                     <SearchIcon />
-                    <input type="search" placeholder="Search" className='search-bar'/>
+                    <input type="search" placeholder="Search" className='search-bar'
+                    maxLength='30'/>
                 </div>
             </form>
         </>

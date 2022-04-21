@@ -35,6 +35,7 @@ function LoginForm() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
+            maxLength='255'
             required
           />
         </label>
@@ -44,6 +45,7 @@ function LoginForm() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            maxLength='60'
             required
           />
         </label>

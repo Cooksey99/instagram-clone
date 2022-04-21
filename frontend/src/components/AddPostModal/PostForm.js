@@ -47,7 +47,9 @@ export default function PostForm({ user }) {
                         <input className='error' placeholder={error} required
                         onChange={(e) => setImage(e.target.value)} />
                     )}
-                    <textarea placeholder="Caption" required
+                    <textarea placeholder="Caption"
+                        maxLength='2200'
+                        required
                         onChange={(e) => setCaption(e.target.value)} />
                     <button type="submit">Create Post</button>
                 </form>
