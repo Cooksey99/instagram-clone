@@ -23,7 +23,7 @@ export default function CommentForm({ user, post }) {
 
     return (
         <>
-            <form className="comment-form single-comment" onSubmit={handleSubmit}>
+            <form className="comment-form" onSubmit={handleSubmit}>
                 <textarea placeholder="Add a comment..."
                     maxLength='300'
                     required

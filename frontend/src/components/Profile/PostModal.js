@@ -48,9 +48,9 @@ export default function PostModal({ post, user }) {
                             </div>
                         ))}
                     </div>
-                    <div className='comment-post-section'>
+                    {/* <div className='comment-post-section'> */}
                         <CommentForm user={sessionUser} post={post} />
-                    </div>
+                    {/* </div> */}
                 </div>
             </section>
         </>
