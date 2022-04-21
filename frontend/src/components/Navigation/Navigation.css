@@ -1,6 +1,6 @@
 .profile-dropdown {
   position: fixed;
-  z-index: 5;
+  z-index: 100;
   background: white;
   top: 66px;
   right: 130px;
@@ -36,7 +36,7 @@
   margin-right: 55px;
   padding: 14px 0 14px 0;
   border-bottom: var(--sp-border);
-  z-index: 4;
+  z-index: 5;
 }
 #nav-bar button {
   border: none;
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 5px;
   padding-left: 10px;
-  z-index: 5;
+  z-index: 15;
   height: 33.33%;
   background: white;
 }
