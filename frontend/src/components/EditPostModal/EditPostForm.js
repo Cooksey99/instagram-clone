@@ -55,9 +55,12 @@ export default function EditPostForm({ post, user, setShowModal }) {
                         </div>
                         <textarea id='edit-caption'
                             value={postCaption}
-                            onChange={(e) => setPostCaption(e.target.value)}/>
+                            onChange={(e) => setPostCaption(e.target.value)}
+                            maxLength='2200'
+                            required
+                            />
                         <div className='text-counter'>
-                            <p>{postCaption.length ? postCaption.length : '0'}/2,200</p>
+                            <p>{postCaption.length ? postCaption.length.toLocaleString("en-US") : '0'}/2,200</p>
                         </div>
                     </div>
                 </div>

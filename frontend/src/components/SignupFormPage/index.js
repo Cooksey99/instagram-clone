@@ -44,6 +44,7 @@ function SignupFormPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            maxLength='256'
             required
           />
           <input
@@ -51,6 +52,7 @@ function SignupFormPage() {
             placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            maxLength='25'
             required
           />
           <input
@@ -58,6 +60,7 @@ function SignupFormPage() {
             placeholder="Last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            maxLength='25'
             required
           />
           <input
@@ -65,6 +68,7 @@ function SignupFormPage() {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            maxLength='30'
             required
           />
           <input
@@ -72,6 +76,7 @@ function SignupFormPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            maxLength='60'
             required
           />
           <input
@@ -79,6 +84,7 @@ function SignupFormPage() {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            maxLength='60'
             required
           />
           <button type="submit">Sign Up</button>

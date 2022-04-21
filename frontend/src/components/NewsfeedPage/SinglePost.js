@@ -4,12 +4,28 @@ import { useHistory, Link } from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'; import './NewsfeedPage.css'
 import PostSettingModal from "../PostSettingModal";
-import { fetchGetPosts, fetchPostData } from "../../store/posts";
+import { fetchGetPosts, fetchPostComment, fetchPostData } from "../../store/posts";
+import CommentForm from "../CommentSection/CommentForm";
 
-export default function SinglePost({ post }) {
+export default function SinglePost({ post, user }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const [postCaption, setPostCaption] = useState(post?.post?.caption);
+
+    const [comment, setComment] = useState('');
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        let commentData = {
+            post_id: post.post.id,
+            user_id: user.id,
+            comment
+        }
+        console.log(post.post.id, user.id)
+        await dispatch(fetchPostComment(commentData));
+        // dispatch(fetchPostData(post.id));
+        setComment('');
+    }
 
     useEffect(() => {
         dispatch(fetchGetPosts());
@@ -32,14 +48,25 @@ export default function SinglePost({ post }) {
                 </div>
                 <div className="icon-bar">
                     <FavoriteBorderIcon />
-                    <ModeCommentOutlinedIcon />
+                    <ModeCommentOutlinedIcon onClick={() => document.getElementById('input-click').focus()} />
                 </div>
                 <div className="caption-bar">
-                    <p>{post?.post?.caption}</p>
+                    <p><b>
+                        <Link to={`/profile/${post?.user?.id}`}>{post?.user?.username}</Link>
+                    </b> {post?.post?.caption}</p>
                 </div>
-                <form className="comment-input">
+                {/* <form className="comment-input">
                     <input placeholder="Add a comment..." />
                     <button><b>Post</b></button>
+                </form> */}
+                <form className="comment-input" onSubmit={handleSubmit}>
+                    <input placeholder="Add a comment..."
+                        maxLength='300'
+                        required
+                        id='input-click'
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)} />
+                    <button className="submit-comment" type='submit'>Post</button>
                 </form>
             </section>
         </>
