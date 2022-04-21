@@ -23,16 +23,14 @@ export default function CommentForm({ user, post }) {
 
     return (
         <>
-            <section>
-                <form className="comment-form" onSubmit={handleSubmit}>
-                    <textarea placeholder="Add a comment..."
-                        maxLength='300'
-                        required
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)} />
-                    <button className="submit-comment" type='submit'>Post</button>
-                </form>
-            </section>
+            <form className="comment-form single-comment" onSubmit={handleSubmit}>
+                <textarea placeholder="Add a comment..."
+                    maxLength='300'
+                    required
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)} />
+                <button className="submit-comment" type='submit'>Post</button>
+            </form>
         </>
     )
 }

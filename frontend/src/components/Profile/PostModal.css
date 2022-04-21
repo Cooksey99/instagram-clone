@@ -26,7 +26,7 @@
     overflow-x: hidden;
 }
 #post-modal-top-bar {
-    height: 30px;
+    height: 8%;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -48,4 +48,12 @@
 }
 .dot-menu {
     cursor: pointer;
+}
+.comment-section {
+    height: 92%;
+    overflow-y: scroll;
+}
+
+.comment-post-section {
+    height: 8%;
 }
