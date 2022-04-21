@@ -46,11 +46,11 @@ function ProfileButton({ user }) {
             <AccountCircleOutlinedIcon />
             <p>Profile</p>
           </div>
-          <div className="profile-tab"
+          {/* <div className="profile-tab"
           onClick={() => history.push('/settings')}>
             <SettingsIcon />
             <p>Settings</p>
-          </div>
+          </div> */}
           <div className="profile-tab logout-button"
           onClick={logout}>
             <p>Log Out</p>
