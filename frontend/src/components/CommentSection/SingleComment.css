@@ -54,3 +54,72 @@
     cursor: pointer;
     margin-right: 20px;
 }
+
+
+/* EDIT COMMENT FORM */
+.edit-comment-form {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* align-items: center;
+    justify-content: center; */
+}
+.edit-comment-form>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 250px;
+    width: 400px;
+    background: white;
+    display: flex;
+    padding: 10px;
+}
+.edit-comment-popup textarea {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+}
+.edit-comment-popup {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.edit-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 20px;
+}
+.edit-comment-form button {
+    all: unset;
+    width: 100px;
+    height: 32px;
+    background: var(--sp-button-blue);
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+}
+.cancel-button-comment {
+    border: var(--sp-border) !important;
+    color: black !important;
+    background: white !important;
+}

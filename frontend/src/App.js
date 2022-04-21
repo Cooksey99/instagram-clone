@@ -9,6 +9,7 @@ import { Modal } from './context/Modal';
 import Profile from './components/Profile';
 import NewsfeedPage from './components/NewsfeedPage';
 import PostPageSolo from './components/Profile/PostPageSolo';
+import Footer from './components/Footer/Footer';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state?.session?.user);
@@ -36,6 +37,7 @@ function App() {
           <Switch>
             <Route path='/login' exact>
               <LoginFormPage />
+              {/* <Footer /> */}
             </Route>
             <Route path='/signup' exact>
               <SignupFormPage />

@@ -23,9 +23,7 @@ export default function NewsfeedPage({ user }) {
                         </div>
                     ))}
                 </div>
-                <div>
-                    <NewsfeedSidebar user={user}/>
-                </div>
+                <NewsfeedSidebar user={user} />
             </section>
         </>
     )

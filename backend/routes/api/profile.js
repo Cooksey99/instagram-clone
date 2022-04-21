@@ -89,5 +89,14 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
     res.json(user);
 }));
+// Search user by username
+router.get('/:username', asyncHandler(async (req, res) => {
+    const { username } = req.params;
+    const user = await User.findAll({
+        where: {
+            username: username
+        }
+    });
+}))
 
 module.exports = router;

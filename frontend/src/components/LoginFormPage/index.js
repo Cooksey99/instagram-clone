@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import './LoginForm.css';
+import Footer from "../Footer/Footer";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -94,6 +95,7 @@ function LoginFormPage() {
             </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

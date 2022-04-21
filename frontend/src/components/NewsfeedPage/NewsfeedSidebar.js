@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import Footer from "../Footer/Footer"
 
 
 
@@ -20,6 +21,7 @@ export default function NewsfeedSidebar({ user }) {
                             <p>{user?.first_name} {user?.last_name}</p>
                         </div>
                     </div>
+                    <Footer />
                 </div>
             </section>
         </>

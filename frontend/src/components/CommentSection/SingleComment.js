@@ -46,25 +46,25 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
             <section className="single-comment">
                 <img className='profile-img' onClick={() => history.push(`/profile/${user?.id}`)}
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
-                {!editComment && (
-                    <div>
-                        <p><b>{user?.username}</b> {comment?.comment}</p>
-                    </div>
-
-                )}
+                <div>
+                    <p><b>{user?.username}</b> {comment?.comment}</p>
+                </div>
                 {editComment && (
-                    <form onSubmit={handleEdit}>
-                        <div className="edit-comment-popup"><b>{user?.username}</b>
-                            <textarea value={commentText}
-                                maxLength='300'
-                                required
-                                onChange={(e) => setCommentText(e.target.value)} />
-                        </div>
-                        <div className="edit-buttons">
-                            <button type="button"
-                                onClick={() => setEditComment(false)}>Cancel</button>
-                            <button type="button" onClick={handleDelete}>Delete</button>
-                            <button type="submit">Save</button>
+                    <form onSubmit={handleEdit} className='edit-comment-form'>
+                        <div>
+                            <div className="edit-comment-popup"><b>Edit comment...</b>
+                                <textarea value={commentText}
+                                    maxLength='300'
+                                    required
+                                    onChange={(e) => setCommentText(e.target.value)} />
+                                <button type="submit">Save</button>
+
+                            </div>
+                            <div className="edit-buttons">
+                                <button type="button" className="cancel-button-comment"
+                                    onClick={() => setEditComment(false)}>Cancel</button>
+                                <button type="button" onClick={handleDelete}>Delete</button>
+                            </div>
                         </div>
                     </form>
                 )}
