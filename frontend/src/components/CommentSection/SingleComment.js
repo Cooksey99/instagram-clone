@@ -11,13 +11,9 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
     const history = useHistory();
     const [editComment, setEditComment] = useState(false);
     const [commentText, setCommentText] = useState(comment?.comment);
-    const [sameUser, setSameUser] = useState(sessionUser?.id === comment?.user_id);
 
     useEffect(async () => {
-        // console.log('testing userId\'s', sessionUser?.id, user?.id)
-        // console.log(comment.comment ,'---comment============comment.user_id---', comment.user_id)
-        console.log('------', comment.comment)
-        // await dispatch(fetchPostData(postId));
+
     }, [dispatch]);
 
     const handleEdit = (e) => {
@@ -40,7 +36,9 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
     const handleDelete = () => {
         // console.log(comment.id);
         dispatch(fetchDeleteComment(comment.id));
-        dispatch(fetchPostData(postId));
+        setEditComment(false);
+        setCommentText('');
+        // dispatch(fetchPostData(postId));
     };
 
     return (

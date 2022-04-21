@@ -147,23 +147,8 @@ export default function reducer(state = initialState, action) {
             newState.userPosts = action.posts;
             return newState;
         case EDIT_POST:
-
-            for (let i = 0; i < newState.posts.length; i++) {
-                if (newState.posts[i].post.id === action.post.id) {
-                    console.log('editPostReducer', action.post);
-                    newState.posts[i].post = action.post;
-                    return newState;
-                }
-            }
-
-            // for (let i = 0; i < newState.userPosts.length; i++) {
-
-            //     if (newState.userPosts[i].id === action.post.id) {
-            //         newState.userPosts[i] = action.post;
-            //         // console.log('userPosts', newState.userPosts[i]);
-            //         return newState;
-            //     };
-            // };
+            newState.userPosts = newState.userPosts.map(post => post.id === action.post.id ? action.post : post);
+            return newState;
         case DELETE_POST:
             delete newState.posts[action.postId];
             return newState;
@@ -173,34 +158,17 @@ export default function reducer(state = initialState, action) {
         //
         // Comment section
         case POST_COMMENT:
-            // console.log('\n\n\n' + newState.singlePost.comment + '\n\n\n');
-            // newState.singlePost.comment[action.comment.id] = action.comment;
-            // for (let i = 0; i <= newState.singlePost.length; i++) {
-            //     if (i === newState.singlePost.length) {
-            //         newState.singlePost[i] = action.comment;
-            //         // console.log('edit', newState.singlePost)
-            //         return newState;
-            //     }
-            // }
+            console.log(action.comment);
+            newState.singlePost = [...newState.singlePost, action.comment];
+
             return newState;
         case EDIT_COMMENT:
-            for (let i = 0; i < newState.singlePost.length; i++) {
-                if (newState.singlePost[i].comment.id === action.comment.id) {
-
-                    newState.singlePost[i].comment = action.comment;
-                    console.log('edit', newState)
-                    return newState;
-                };
-            };
+            console.log(action.comment);
+            newState.singlePost = newState.singlePost.map(comment => comment.comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
+            return newState;
         case DELETE_COMMENT:
-            for (let i = 0; i < newState.singlePost.length; i++) {
-                if (newState.singlePost[i].comment.id === action.commentId) {
-
-                    delete newState.singlePost[i];
-                    console.log('deleteReducer', newState.singlePost[i])
-                    return newState;
-                };
-            };
+            newState.singlePost = newState.singlePost.filter(comment => comment.comment.id !== action.commentId);
+            return newState;
         default:
             return state;
     }

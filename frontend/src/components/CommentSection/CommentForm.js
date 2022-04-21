@@ -16,8 +16,8 @@ export default function CommentForm({ user, post }) {
             comment
         }
 
-        dispatch(fetchPostComment(commentData));
-        dispatch(fetchPostData(post.id));
+        await dispatch(fetchPostComment(commentData));
+        // dispatch(fetchPostData(post.id));
         setComment('');
     }
 

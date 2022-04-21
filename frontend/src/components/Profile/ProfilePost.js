@@ -9,7 +9,7 @@ export default function ProfilePost({ post, user }) {
     const dispatch = useDispatch();
     const commentsObj = useSelector(state => state?.newsfeed?.singlePost);
     const [showModal, setShowModal] = useState(false);
-    const [modalPost, setModalPost] = useState({});
+
 
     useEffect(() => {
         // dispatch(fetchPostData(post.id));
@@ -18,16 +18,12 @@ export default function ProfilePost({ post, user }) {
     return (
         <>
             <div className="single-post-image"
-                onClick={() => {
-                    setShowModal(true);
-                    setModalPost(post);
-                    dispatch(fetchPostData(post.id))
-                }}>
+                onClick={() => {setShowModal(true)}}>
                 <img src={post?.image} />
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PostModal post={modalPost} user={user} commentsObj={commentsObj} />
+                    <PostModal post={post} user={user} commentsObj={commentsObj} />
                 </Modal>
             )}
         </>

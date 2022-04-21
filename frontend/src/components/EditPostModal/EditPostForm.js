@@ -21,7 +21,7 @@ export default function EditPostForm({ post, user, setShowModal }) {
         }
         dispatch(fetchEditPosts(newPost, id));
         await setPostCaption(postCaption);
-        dispatch(fetchPostData(post.id));
+        // dispatch(fetchPostData(post.id));
     }
 
     useEffect(() => {

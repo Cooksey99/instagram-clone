@@ -15,7 +15,8 @@ export default function PostModal({ post, user }) {
     const commentsObj = useSelector(state => state?.newsfeed?.singlePost);
 
     useEffect(async () => {
-        await dispatch(fetchPostData(post.id));
+        // console.log('postCaption', post.caption);
+        dispatch(fetchPostData(post.id));
         // console.log(post.caption ,'============', sessionUser.id)
     }, [dispatch])
 
@@ -42,7 +43,6 @@ export default function PostModal({ post, user }) {
                     </div>
                     {commentsObj?.length > 0 && commentsObj.map(comment => (
                         <div key={comment?.id}>
-                            {console.log(comment.comment.comment)}
                             <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
                         </div>
                     ))}
