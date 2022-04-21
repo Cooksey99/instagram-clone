@@ -25,7 +25,7 @@ export default function SinglePost({ post }) {
                             src={post?.user?.image ? post?.user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                         <Link to={`/profile/${post?.user?.id}`}>{post?.user?.username}</Link>
                     </div>
-                    <PostSettingModal post={post.post}/>
+                    <PostSettingModal post={post.post} page={'newsfeed'} />
                 </div>
                 <div className="post-pic">
                     <img src={post?.post?.image} alt='post image' />

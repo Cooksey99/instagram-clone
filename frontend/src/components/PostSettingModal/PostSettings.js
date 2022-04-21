@@ -6,7 +6,7 @@ import { fetchFindUser } from "../../store/profile";
 import EditPostModal from "../EditPostModal";
 import './PostSettings.css'
 
-export default function PostSettings({ sessionUser, post, setShowModal }) {
+export default function PostSettings({ sessionUser, post, setShowModal, page }) {
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -36,12 +36,21 @@ export default function PostSettings({ sessionUser, post, setShowModal }) {
   if (currentUser) {
     modalContent = (
       <>
-        <div id="post-settings-user">
-          <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
-          <EditPostModal post={post} user={postUser} />
-          <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
-          <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
-        </div>
+        {page !== 'newsfeed' && (
+          <div id="post-settings-user">
+            <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
+            <EditPostModal post={post} user={postUser} />
+            <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
+            <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
+          </div>
+        )}
+        {page === 'newsfeed' && (
+          <div id="post-settings-user-newsfeed">
+            <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
+            <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
+            <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
+          </div>
+        )}
       </>
     );
   } else {

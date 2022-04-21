@@ -160,7 +160,6 @@ export default function reducer(state = initialState, action) {
         case POST_COMMENT:
             console.log(action.comment);
             newState.singlePost = [...newState.singlePost, action.comment];
-
             return newState;
         case EDIT_COMMENT:
             console.log(action.comment);
