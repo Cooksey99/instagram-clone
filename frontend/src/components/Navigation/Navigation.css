@@ -36,6 +36,7 @@
   margin-right: 55px;
   padding: 14px 0 14px 0;
   border-bottom: var(--sp-border);
+  z-index: 10;
 }
 #nav-bar button {
   border: none;

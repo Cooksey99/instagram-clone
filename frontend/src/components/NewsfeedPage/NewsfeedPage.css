@@ -84,16 +84,31 @@
     height: 821px;
     margin: 0 0 30px;
     z-index: 2;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 #fixed-sidebar {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     z-index: -1;
 }
 #profile-sidebar-tab {
-    margin-top: 50px;
+    width: 293px;
+    margin: auto;
+    /* width: 80%; */
+    /* float: left;
+    margin: auto; */
+    /* margin: auto; */
+    /* margin-top: 50px; */
     display: flex;
     justify-content: flex-start;
     gap: 25px;
+    margin-bottom: 120px;
 }
 #profile-sidebar-tab img{
     width: 56px;

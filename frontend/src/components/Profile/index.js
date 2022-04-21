@@ -7,6 +7,7 @@ import { fetchUserPosts } from "../../store/posts";
 import { useParams } from "react-router-dom";
 import { fetchFindUser } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
+import Footer from "../Footer/Footer";
 
 export default function Profile() {
 
@@ -70,7 +71,7 @@ export default function Profile() {
                     ))}
                 </div>
 
-
+            <Footer />
             </section>
 
         </>
