@@ -53,7 +53,8 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                     <form onSubmit={handleEdit} className='edit-comment-form'>
                         <div>
                             <div className="edit-comment-popup"><b>Edit comment...</b>
-                                <textarea value={commentText}
+                                <textarea
+                                    placeholder="Comment here..."
                                     maxLength='300'
                                     required
                                     onChange={(e) => setCommentText(e.target.value)} />
