@@ -37,14 +37,16 @@ export default function Profile() {
                         <div className="main-tab">
                             <h2>{user?.username}</h2>
                             <div className='edit-profile'>
-                                <button>Edit Profile</button>
+                                {/* <button>Edit Profile</button> */}
                             </div>
-                            <button><SettingsIcon /></button>
+                            {/* <button><SettingsIcon /></button> */}
                         </div>
                         <div className="main-tab middle-tab">
                             <p><b>{userPosts?.length}</b> posts</p>
-                            <p><b>0</b> followers</p>
-                            <p><b>0</b> following</p>
+                            {/* <p><b>0</b> followers</p>
+                            <p><b>0</b> following</p> */}
+                            <p></p>
+                            <p></p>
                         </div>
                         <div className="bio-tab">
                             <b>{user?.first_name} {user?.last_name}</b>

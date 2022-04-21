@@ -34,19 +34,23 @@ export default function PostModal({ post, user }) {
                             <Link to={`/profile/${user?.id}`}>{user?.username}</Link>
                         </div>
                         <div className='dot-menu'>
-                           <PostSettingModal post={post} />
+                            <PostSettingModal post={post} />
                         </div>
                     </div>
-                    <div className='single-comment'>
-                        <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image'/>
-                        <p><b>{user.username} </b>{post.caption}</p>
-                    </div>
-                    {commentsObj?.length > 0 && commentsObj.map(comment => (
-                        <div key={comment?.id}>
-                            <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
+                    <div className='comment-section'>
+                        <div className='single-comment'>
+                            <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                            <p><b>{user.username} </b>{post.caption}</p>
                         </div>
-                    ))}
-                    <CommentForm user={sessionUser} post={post} />
+                        {commentsObj?.length > 0 && commentsObj.map(comment => (
+                            <div key={comment?.id}>
+                                <SingleComment comment={comment.comment} user={comment.user} sessionUser={sessionUser} postId={post.id} />
+                            </div>
+                        ))}
+                    </div>
+                    {/* <div className='comment-post-section'> */}
+                        <CommentForm user={sessionUser} post={post} />
+                    {/* </div> */}
                 </div>
             </section>
         </>

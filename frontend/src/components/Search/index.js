@@ -7,20 +7,20 @@ export default function Search() {
     const [searchVal, setSearchVal] = useState('');
 
     const handleSearch = () => {
-        
+
     }
 
     return (
         <>
             <form>
                 <div id='search-component'>
-                    <SearchIcon />
+                    {/* <SearchIcon />
                     <input type="search" placeholder="Search" className='search-bar'
                     onChange={(e) => {
                         setSearchVal(e.target.value);
                         handleSearch();
                     }}
-                    maxLength='30'/>
+                    maxLength='30'/> */}
                 </div>
             </form>
         </>

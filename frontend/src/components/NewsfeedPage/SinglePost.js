@@ -22,7 +22,7 @@ export default function SinglePost({ post, user }) {
             comment
         }
         console.log(post.post.id, user.id)
-        await dispatch(fetchPostComment(commentData));
+        dispatch(fetchPostComment(commentData));
         // dispatch(fetchPostData(post.id));
         setComment('');
     }
@@ -47,8 +47,8 @@ export default function SinglePost({ post, user }) {
                     <img src={post?.post?.image} alt='post image' />
                 </div>
                 <div className="icon-bar">
-                    <FavoriteBorderIcon />
-                    <ModeCommentOutlinedIcon onClick={() => document.getElementById('input-click').focus()} />
+                    {/* <FavoriteBorderIcon /> */}
+                    <ModeCommentOutlinedIcon onClick={() => document.getElementById(`post${post.post.id}`).focus()} />
                 </div>
                 <div className="caption-bar">
                     <p><b>
@@ -63,7 +63,7 @@ export default function SinglePost({ post, user }) {
                     <input placeholder="Add a comment..."
                         maxLength='300'
                         required
-                        id='input-click'
+                        id={`post${post.post.id}`}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)} />
                     <button className="submit-comment" type='submit'>Post</button>
