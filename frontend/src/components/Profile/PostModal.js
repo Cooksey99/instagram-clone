@@ -30,13 +30,15 @@ export default function PostModal({ sessionUser, user, post }) { // removed user
         <>
             <section id='post-modal'>
                 <div id="post-modal-left">
-                    <img src={post?.image} alt='image' />
+                    <img src={post?.image} alt='image'
+                    onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} />
                 </div>
                 <div id="post-modal-right">
                     <div id='post-modal-top-bar'>
                         <div className='post-modal-profile-bar'>
                             <img onClick={() => history.push(`/profile/${user.id}`)}
-                                src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                                src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'}
+                                onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                             <Link to={`/profile/${user?.id}`}>{user?.username}</Link>
                         </div>
                         <div className='dot-menu'>
@@ -45,7 +47,8 @@ export default function PostModal({ sessionUser, user, post }) { // removed user
                     </div>
                     <div className='comment-section'>
                         <div className='single-comment'>
-                            <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                            <img className='profile-img' src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'}
+                            onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                             <p><b>{user?.username} </b>{updatedPost?.caption}</p>
                         </div>
                         {commentsObj?.length > 0 && commentsObj.map(comment => (

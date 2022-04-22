@@ -46,12 +46,14 @@ export default function EditPostForm({ post, user, setShowModal }) {
                 </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
-                        <img src={post?.image} alt='image' />
+                        <img src={post?.image} alt='image'
+                        onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}/>
                     </div>
                     <div id="edit-post-right">
                         <div id='edit-post-top-bar'>
                             <div className='post-modal-profile-bar'>
-                                <img src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                                <img src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'}
+                                onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                                 <p><b>{user?.username}</b></p>
                             </div>
                         </div>

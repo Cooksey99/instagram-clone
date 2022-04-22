@@ -20,7 +20,7 @@ export default function ProfilePost({ post, user }) {
         <>
             <div className="single-post-image"
                 onClick={() => {setShowModal(true)}}>
-                <img src={post?.image} />
+                <img src={post?.image} onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} />
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

@@ -40,17 +40,22 @@ export default function SinglePost({ post, user }) {
 
     return (
         <>
+            {/* <img
+            src={imageSrc}
+            onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}/> */}
             <section className="single-post">
                 <div className="top-bar-post">
                     <div className="post-profile-pic">
                         <img onClick={() => history.push(`/profile/${updatedUser?.id}`)}
+                            onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}
                             src={updatedUser?.image ? updatedUser?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                         <Link to={`/profile/${post?.user?.id}`}>{post?.user?.username}</Link>
                     </div>
                     <PostSettingModal post={post?.post} page={'newsfeed'} />
                 </div>
                 <div className="post-pic">
-                    <img src={post?.post?.image} alt='post image' />
+                    <img src={post?.post?.image}
+                    onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='post image' />
                 </div>
                 <div className="icon-bar">
                     {/* <FavoriteBorderIcon /> */}
