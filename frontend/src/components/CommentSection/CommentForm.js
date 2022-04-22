@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { fetchPostComment, fetchPostData } from '../../store/posts';
 
-export default function CommentForm({ user, post }) {
+export default function CommentForm({ user, post, page }) {
 
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
@@ -21,16 +21,38 @@ export default function CommentForm({ user, post }) {
         setComment('');
     }
 
+    useEffect(async () => {
+        await dispatch(fetchPostData(post?.id));
+    }, [dispatch])
+
     return (
         <>
-            <form className="comment-form" onSubmit={handleSubmit}>
-                <textarea placeholder="Add a comment..."
-                    maxLength='300'
-                    required
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)} />
-                <button className="submit-comment" type='submit'
-                    onClick={() => {setComment(comment.trim())}}>Post</button>
+            <form onSubmit={handleSubmit}>
+                {page !== 'newsfeed' && (
+                    <div className="comment-form">
+                        <textarea placeholder="Add a comment..."
+                            maxLength='300'
+                            required
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)} />
+                        <button className="submit-comment" type='submit'
+                            onClick={() => { setComment(comment.trim()) }}>Post</button>
+                    </div>
+                )}
+                {page === 'newsfeed' && (
+                    <div className="comment-form">
+                        <input placeholder="Add a comment..."
+                            maxLength='300'
+                            required
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)} />
+                        <button className="submit-comment" type='submit'
+                            onClick={() => {
+                                setComment(comment.trim())
+                            }}>Post</button>
+                    </div>
+                )}
+
             </form>
         </>
     )

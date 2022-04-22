@@ -17,6 +17,7 @@ export default function SinglePost({ post, user }) {
     const [postModal, setPostModal] = useState(false);
     const updatedPost = useSelector(state => state?.newsfeed?.singlePost?.post);
     const updatedUser = useSelector(state => state?.newsfeed?.singlePost?.user);
+    const sessionUser = useSelector(state => state?.session?.user);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -68,7 +69,7 @@ export default function SinglePost({ post, user }) {
                         </b>
                     </div>
                 </div>
-                <form className="comment-input" onSubmit={handleSubmit}>
+                {/* <form className="comment-input" onSubmit={handleSubmit}>
                     <input placeholder="Add a comment..."
                         maxLength='300'
                         required
@@ -76,7 +77,8 @@ export default function SinglePost({ post, user }) {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)} />
                     <button className="submit-comment" type='submit'>Post</button>
-                </form>
+                </form> */}
+                <CommentForm user={sessionUser} post={post?.post} page={'newsfeed'} />
             </section>
         </>
     )
