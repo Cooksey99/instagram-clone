@@ -61,9 +61,9 @@ function App() {
             <Route path='/newsfeed' exact>
               <NewsfeedPage user={user} />
             </Route>
-            <Route path='/:id/post/:postId' exact>
+            {/* <Route path='/:id/post/:postId' exact>
               <PostModal />
-            </Route>
+            </Route> */}
             <Redirect from='*' to='404'>
               <Route path='/404' exact>
               </Route>

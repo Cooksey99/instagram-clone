@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { fetchPostComment, fetchPostData } from '../../store/posts';
 
-export default function CommentForm({ user, post }) {
+export default function CommentForm({ user, post, page }) {
 
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');

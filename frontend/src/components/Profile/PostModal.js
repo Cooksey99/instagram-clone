@@ -23,7 +23,8 @@ export default function PostModal({ sessionUser, user, post }) { // removed user
 
     useEffect(async () => {
         await dispatch(fetchPostData(post?.id));
-        // console.log(post);
+        console.log(sessionUser);
+        console.log(post)
     }, [dispatch])
 
     return (
