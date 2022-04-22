@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchEditPosts, fetchPostData } from '../../store/posts';
+import { fetchEditPosts, fetchGetPosts, fetchPostData } from '../../store/posts';
 import './EditPostForm.css';
 
 export default function EditPostForm({ post, user, setShowModal }) {
@@ -28,7 +28,8 @@ export default function EditPostForm({ post, user, setShowModal }) {
             caption: postCaption
         }
         dispatch(fetchEditPosts(newPost, id));
-        setPostCaption(post?.caption)
+        setPostCaption(post?.caption);
+        // dispatch(fetchGetPosts());
         // dispatch(fetchPostData(post.id));
     }
 

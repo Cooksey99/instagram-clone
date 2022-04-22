@@ -148,6 +148,7 @@ export default function reducer(state = initialState, action) {
             return newState;
         case EDIT_POST:
             // newState.userPosts = newState.userPosts.map(post => post.id === action.post.id ? action.post : post);
+            newState.posts = newState.posts.map(single => single.post.id === action.post.id ? single.post = action.post : single);
             newState.singlePost.post = { ...action.post };
             return newState;
         case DELETE_POST:
