@@ -36,14 +36,15 @@ export default function EditPostForm({ post, user, setShowModal }) {
     return (
         <>
             <section id='edit-post'>
-                    <div id='edit-post-header'>
-                        <button className='cancel-button' onClick={() => setShowModal(false)}>Cancel</button>
-                        <h3>Edit Form</h3>
-                        <button className='done-button' onClick={() => {
-                            handleEdit();
-                            setShowModal(false);
-                        }}>Done</button>
-                    </div>
+                <div id='edit-post-header'>
+                    <button className='cancel-button' onClick={() => setShowModal(false)}>Cancel</button>
+                    <h3>Edit Form</h3>
+                    <button className='done-button' onClick={() => {
+                        setCaption(caption.trim());
+                        handleEdit();
+                        setShowModal(false);
+                    }}>Done</button>
+                </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
                         <img src={post?.image} alt='image' />
@@ -60,7 +61,7 @@ export default function EditPostForm({ post, user, setShowModal }) {
                             onChange={(e) => setPostCaption(e.target.value)}
                             maxLength='2200'
                             required
-                            />
+                        />
                         <div className='text-counter'>
                             <p>{postCaption?.length ? postCaption?.length.toLocaleString("en-US") : '0'}/2,200</p>
                         </div>

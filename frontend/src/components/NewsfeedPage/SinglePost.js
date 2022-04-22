@@ -22,17 +22,17 @@ export default function SinglePost({ post, user }) {
         e.preventDefault();
 
         let commentData = {
-            post_id: updatedPost.id,
-            user_id: updatedUser.id,
+            post_id: post?.post?.id,
+            user_id: user?.user?.id,
             comment
         }
-        console.log(updatedPost.id, updatedUser.id)
+        // console.log(updatedPost.id, updatedUser.id)
         dispatch(fetchPostComment(commentData));
         setComment('');
     }
 
     useEffect(() => {
-        console.log('post', post.post.id)
+        // console.log('post', post.post.id)
         dispatch(fetchGetPosts());
         dispatch(fetchPostData(post.id));
     }, [dispatch])
@@ -53,7 +53,7 @@ export default function SinglePost({ post, user }) {
                 </div>
                 <div className="icon-bar">
                     {/* <FavoriteBorderIcon /> */}
-                    <ModeCommentOutlinedIcon onClick={() => document.getElementById(`post${post.post.id}`).focus()} />
+                    {/* <ModeCommentOutlinedIcon onClick={() => document.getElementById(`post${post.post.id}`).focus()} /> */}
                 </div>
                 <div className="caption-bar">
                     <p><b>
@@ -62,13 +62,17 @@ export default function SinglePost({ post, user }) {
                 </div>
                 <div>
                     {/* <Link to={`/${updatedPost.user_id}/post/${updatedPost.id}`}>View all comments</Link> */}
-                    <NewsfeedPost post={post?.post} user={post?.user} />
+                    <div className="view-comments">
+                        <b>
+                            <NewsfeedPost post={post?.post} user={post?.user} />
+                        </b>
+                    </div>
                 </div>
                 <form className="comment-input" onSubmit={handleSubmit}>
                     <input placeholder="Add a comment..."
                         maxLength='300'
                         required
-                        id={`post/${post.post.id}`}
+                        // id={`post/${post.post.id}`}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)} />
                     <button className="submit-comment" type='submit'>Post</button>

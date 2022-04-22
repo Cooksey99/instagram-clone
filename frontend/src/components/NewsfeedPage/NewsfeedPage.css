@@ -57,6 +57,10 @@
     margin-left: 10px;
 }
 /* Comment input section */
+.view-comments {
+    margin-left: 10px;
+    cursor: pointer;
+}
 .comment-input {
     border-top: var(--sp-border);
     width: 100%;
