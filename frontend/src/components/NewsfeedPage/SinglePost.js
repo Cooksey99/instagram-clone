@@ -32,10 +32,10 @@ export default function SinglePost({ post, user }) {
         setComment('');
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         // console.log('post', post.post.id)
-        dispatch(fetchGetPosts());
-        dispatch(fetchPostData(post.id))
+        await dispatch(fetchGetPosts());
+        await dispatch(fetchPostData(post.id))
     }, [dispatch])
 
     return (

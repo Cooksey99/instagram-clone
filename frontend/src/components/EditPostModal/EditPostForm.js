@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { fetchEditPosts, fetchGetPosts, fetchPostData } from '../../store/posts';
 import './EditPostForm.css';
 
-export default function EditPostForm({ post, user, setShowModal }) {
+export default function EditPostForm({ post, user, setShowModal, openModal }) {
 
     const dispatch = useDispatch();
     const location = useLocation();
@@ -27,10 +27,11 @@ export default function EditPostForm({ post, user, setShowModal }) {
             image: post.image,
             caption: postCaption
         }
-        dispatch(fetchEditPosts(newPost, id));
+        await dispatch(fetchEditPosts(newPost, id));
         setPostCaption(post?.caption);
         // dispatch(fetchGetPosts());
         // dispatch(fetchPostData(post.id));
+        openModal(false);
     }
 
 
@@ -43,7 +44,9 @@ export default function EditPostForm({ post, user, setShowModal }) {
                 <div id='edit-post-header'>
                     <button className='cancel-button' type='button' onClick={() => setShowModal(false)}>Cancel</button>
                     <h3>Edit Form</h3>
-                    <button className='done-button' type='submit' onClick={() => setPostCaption(postCaption.trim())}>Done</button>
+                    <button className='done-button' type='submit' onClick={() => {
+                        setPostCaption(postCaption.trim());
+                    }}>Done</button>
                 </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">

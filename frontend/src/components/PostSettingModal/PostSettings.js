@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { fetchDeletePost, fetchPostData } from "../../store/posts";
 import { fetchFindUser } from "../../store/profile";
 import EditPostModal from "../EditPostModal";
+import DeletePostModal from "./DeletePostModal";
 import './PostSettings.css'
 
 export default function PostSettings({ sessionUser, post, setShowModal, page }) {
@@ -41,8 +42,8 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
     modalContent = (
       <>
         <div id="post-settings-user">
-          <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
-          <EditPostModal post={updatedPost} user={postUser} />
+          <DeletePostModal postId={post.id} modalShow={setShowModal} />
+          <EditPostModal post={updatedPost} user={postUser} openModal={setShowModal} />
           {/* <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button> */}
           <button className='post-setting-tab' onClick={() => {
             setShowModal(false);
@@ -72,7 +73,7 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
       <section>
         {modalContent}
       </section>
-      {confirmDelete && (
+      {/* {confirmDelete && (
         <div className="confirm-delete">
           <div className='delete-pop-background'>
             <h3>Delete Post?</h3>
@@ -81,7 +82,7 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
             <button onClick={() => setConfirmDelete(false)}>Cancel</button>
           </div>
         </div>
-      )}
+      )} */}
     </>
   )
 }
