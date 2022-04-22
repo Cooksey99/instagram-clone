@@ -53,6 +53,8 @@ router.get('/post/:postId', asyncHandler(async (req, res) => {
         ]
     })
 
+    const user = await User.findByPk(post.user_id);
+
     const comments = await Promise.all(commentList.map(async comment => {
         let user = await User.findByPk(comment.user_id);
 
@@ -61,6 +63,8 @@ router.get('/post/:postId', asyncHandler(async (req, res) => {
         return result;
     }));
 
+    // let comments = { commentsObj };
+    let final = { post, user, comments}
     // console.log('\n\n\n' + comments + '\n\n\n')
 
     // const comments = await Promise.all(commentList.map(comment => {
@@ -68,7 +72,7 @@ router.get('/post/:postId', asyncHandler(async (req, res) => {
 
     // const result = { post: post, comments: comments}
 
-    res.json(comments);
+    res.json(final);
 }));
 
 

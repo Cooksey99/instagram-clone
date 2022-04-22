@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { fetchEditPosts, fetchPostData } from '../../store/posts';
 import './EditPostForm.css';
@@ -10,7 +10,15 @@ export default function EditPostForm({ post, user, setShowModal }) {
     const location = useLocation();
     const history = useHistory();
 
-    const [postCaption, setPostCaption] = useState(post.caption);
+    // const updatedPost = useSelector(state => state?.newsfeed?.singlePost?.post);
+    const [caption, setCaption] = useState('');
+
+    useEffect(async () => {
+        await dispatch(fetchPostData(post?.id))
+        await setPostCaption(post?.caption)
+    }, [dispatch])
+
+    const [postCaption, setPostCaption] = useState('');
 
 
     const handleEdit = async (e) => {
@@ -20,16 +28,10 @@ export default function EditPostForm({ post, user, setShowModal }) {
             caption: postCaption
         }
         dispatch(fetchEditPosts(newPost, id));
-        await setPostCaption(postCaption);
+        setPostCaption(post?.caption)
         // dispatch(fetchPostData(post.id));
     }
 
-    useEffect(() => {
-        // console.log('location', location.pathname)
-        // console.log('postCaption', postCaption)
-        console.log('post', post.caption)
-        // dispatch(fetchPostData);
-    }, [handleEdit])
 
     return (
         <>
@@ -44,7 +46,7 @@ export default function EditPostForm({ post, user, setShowModal }) {
                     </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
-                        <img src={post.image} alt='image' />
+                        <img src={post?.image} alt='image' />
                     </div>
                     <div id="edit-post-right">
                         <div id='edit-post-top-bar'>
@@ -60,7 +62,7 @@ export default function EditPostForm({ post, user, setShowModal }) {
                             required
                             />
                         <div className='text-counter'>
-                            <p>{postCaption.length ? postCaption.length.toLocaleString("en-US") : '0'}/2,200</p>
+                            <p>{postCaption?.length ? postCaption?.length.toLocaleString("en-US") : '0'}/2,200</p>
                         </div>
                     </div>
                 </div>

@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
 import { fetchPostData } from "../../store/posts";
-import PostModal from "./PostModal";
+import PostModal from "../Profile/PostModal";
 
-export default function ProfilePost({ post, user }) {
+export default function NewsfeedPost({ post, user }) {
 
     const dispatch = useDispatch();
-    const commentsObj = useSelector(state => state?.newsfeed?.singlePost);
-    const sessionUser = useSelector(state => state?.session?.user);
-
     const [showModal, setShowModal] = useState(false);
+
+    const sessionUser = useSelector(state => state?.session?.user);
 
     useEffect(() => {
         // dispatch(fetchPostData(post.id));
@@ -20,7 +19,7 @@ export default function ProfilePost({ post, user }) {
         <>
             <div className="single-post-image"
                 onClick={() => {setShowModal(true)}}>
-                <img src={post?.image} />
+                <p>View all comments</p>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
