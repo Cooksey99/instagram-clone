@@ -12,7 +12,7 @@ export default function PostForm({ user }) {
     const [error, setError] = useState(null);
 
     function testImage(url) {
-        return /(jpg|jpeg|png|webp|avif|gif|svg)/g.test(url);
+        return /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))$/g.test(url);
     }
     const handleSubmit = (e) => {
         console.log(testImage(image))
@@ -39,19 +39,20 @@ export default function PostForm({ user }) {
                 {/* <h3>Drag photos and videos here</h3>
                 <button>Select from computer</button> */}
                 <form onSubmit={handleSubmit} id='new-post-form'>
-                    {!error && (
-                         <input placeholder="Image URL" required
-                         onChange={(e) => setImage(e.target.value)} />
-                    )}
-                    {error && (
-                        <input className='error' placeholder={error} required
+
+                    <input placeholder="Image URL" required
                         onChange={(e) => setImage(e.target.value)} />
+
+                    {error && (
+
+                        <p className="error-text">{error}</p>
                     )}
                     <textarea placeholder="Caption"
+                        value={caption}
                         maxLength='2200'
                         required
                         onChange={(e) => setCaption(e.target.value)} />
-                    <button type="submit">Create Post</button>
+                    <button type="submit" onClick={() => setCaption(caption.trim())}>Create Post</button>
                 </form>
 
             </div>

@@ -2,19 +2,22 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import './SingleComment.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDeleteComment, fetchEditComment, fetchPostData } from "../../store/posts";
 
 export default function SingleComment({ comment, user, sessionUser, postId }) {
+    const [commentText, setCommentText] = useState(comment?.comment);
 
     const dispatch = useDispatch();
     const history = useHistory();
     const [editComment, setEditComment] = useState(false);
-    const [commentText, setCommentText] = useState(comment?.comment);
+
+    // const currentPost = useSelector(state => state?.newsfeed?.singlePost);
 
     useEffect(async () => {
-
-    }, [dispatch]);
+        setCommentText(comment?.comment)
+        console.log('post', commentText)
+    }, [dispatch, editComment]);
 
     const handleEdit = (e) => {
         e.preventDefault();
@@ -56,9 +59,10 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                                 <textarea
                                     placeholder="Comment here..."
                                     maxLength='300'
+                                    value={commentText}
                                     required
                                     onChange={(e) => setCommentText(e.target.value)} />
-                                <button type="submit">Save</button>
+                                <button type="submit" onClick={() => setCommentText(commentText.trim())}>Save</button>
 
                             </div>
                             <div className="edit-buttons">

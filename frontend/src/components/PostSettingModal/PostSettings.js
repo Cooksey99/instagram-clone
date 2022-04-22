@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { fetchDeletePost } from "../../store/posts";
+import { fetchDeletePost, fetchPostData } from "../../store/posts";
 import { fetchFindUser } from "../../store/profile";
 import EditPostModal from "../EditPostModal";
 import './PostSettings.css'
@@ -13,12 +13,14 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
   const [currentUser, setCurrentUser] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const postUser = useSelector(state => state?.profile?.user);
-
+  const updatedPost = useSelector(state => state?.newsfeed?.singlePost?.post);
 
   useEffect(() => {
-    if (sessionUser.id === post.user_id) setCurrentUser(true);
-    dispatch(fetchFindUser(post.user_id));
+    if (sessionUser?.id === post?.user_id) setCurrentUser(true);
+    dispatch(fetchFindUser(post?.user_id));
+    dispatch(fetchPostData(post?.id))
 
+    console.log(updatedPost)
   }, [dispatch])
 
   const copy = (url) => {
@@ -36,21 +38,12 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
   if (currentUser) {
     modalContent = (
       <>
-        {page !== 'newsfeed' && (
-          <div id="post-settings-user">
-            <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
-            <EditPostModal post={post} user={postUser} />
-            <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
-            <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
-          </div>
-        )}
-        {page === 'newsfeed' && (
-          <div id="post-settings-user-newsfeed">
-            <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
-            <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
-            <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
-          </div>
-        )}
+        <div id="post-settings-user">
+          <button className='post-setting-tab delete' onClick={() => setConfirmDelete(true)}><b>Delete</b></button>
+          <EditPostModal post={updatedPost} user={postUser} />
+          <button className='post-setting-tab' onClick={() => copy(location)}>Copy Link</button>
+          <button className='post-setting-tab' onClick={() => setShowModal(false)}>Cancel</button>
+        </div>
       </>
     );
   } else {

@@ -29,7 +29,8 @@ export default function CommentForm({ user, post }) {
                     required
                     value={comment}
                     onChange={(e) => setComment(e.target.value)} />
-                <button className="submit-comment" type='submit'>Post</button>
+                <button className="submit-comment" type='submit'
+                    onClick={() => {setComment(comment.trim())}}>Post</button>
             </form>
         </>
     )

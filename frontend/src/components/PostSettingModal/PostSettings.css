@@ -6,9 +6,9 @@
 }
 #post-settings-user-newsfeed {
     width: 400px;
-    height: 187.8px;
+    height: 250px;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 #post-settings-no-user {
     width: 400px;

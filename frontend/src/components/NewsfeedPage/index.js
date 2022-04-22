@@ -4,10 +4,12 @@ import { fetchGetPosts } from "../../store/posts";
 import SinglePost from "./SinglePost";
 import './NewsfeedPage.css'
 import NewsfeedSidebar from "./NewsfeedSidebar";
+import { Link } from "react-router-dom";
 
 export default function NewsfeedPage({ user }) {
     const dispatch = useDispatch();
     const posts = useSelector(state => state?.newsfeed?.posts);
+    
 
     useEffect(() => {
         dispatch(fetchGetPosts())
@@ -19,6 +21,7 @@ export default function NewsfeedPage({ user }) {
                 <div id="newsfeed-container">
                     {posts.length > 0 && posts.map(post => (
                         <div key={post.id}>
+
                             <SinglePost post={post} user={user} />
                         </div>
                     ))}

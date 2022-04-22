@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import NewsfeedPage from './components/NewsfeedPage';
 import PostPageSolo from './components/Profile/PostPageSolo';
 import Footer from './components/Footer/Footer';
+import PostModal from './components/Profile/PostModal';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state?.session?.user);
@@ -60,7 +61,9 @@ function App() {
             <Route path='/newsfeed' exact>
               <NewsfeedPage user={user} />
             </Route>
-
+            <Route path='/:id/post/:postId' exact>
+              <PostModal />
+            </Route>
             <Redirect from='*' to='404'>
               <Route path='/404' exact>
               </Route>

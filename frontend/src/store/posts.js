@@ -147,27 +147,43 @@ export default function reducer(state = initialState, action) {
             newState.userPosts = action.posts;
             return newState;
         case EDIT_POST:
-            newState.userPosts = newState.userPosts.map(post => post.id === action.post.id ? action.post : post);
+            // newState.userPosts = newState.userPosts.map(post => post.id === action.post.id ? action.post : post);
+            newState.singlePost.post = { ...action.post };
             return newState;
         case DELETE_POST:
             delete newState.posts[action.postId];
             return newState;
         case POST_INFO:
+            // console.log(action.postData)
             newState.singlePost = action.postData;
             return newState;
         //
         // Comment section
         case POST_COMMENT:
-            console.log(action.comment);
-            newState.singlePost = [...newState.singlePost, action.comment];
+            // newState.singlePost = [...newState.singlePost, action.comment];
+            // console.log('action.comment', action.comment)
+            newState.singlePost.comments = [...newState.singlePost.comments, action.comment]
+
+            // console.log(newState.singlePost.comments);
             return newState;
         case EDIT_COMMENT:
+            // newState.singlePost.comments = newState.singlePost.comments.map(comment => comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
+            newState.singlePost.comments = newState.singlePost.comments.map(comment => comment.comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
             console.log(action.comment);
-            newState.singlePost = newState.singlePost.map(comment => comment.comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
+
             return newState;
         case DELETE_COMMENT:
-            newState.singlePost = newState.singlePost.filter(comment => comment.comment.id !== action.commentId);
+            // newState.singlePost = newState.singlePost.filter(comment => comment.comment.id !== action.commentId);
+            newState.singlePost.comments = newState.singlePost.comments.filter(comment => comment.comment.id !== action.commentId);
             return newState;
+            // for (let ele in newState.singlePost) {
+            //     console.log(newState.singlePost[ele])
+            //     // if (ele.comments.comment.id === action.commentId) {
+            //     //     console.log(newState.singlePost[ele])
+            //     //     // delete newState.singlePost[ele];
+            //     //     return newState;
+            //     // }
+            // }
         default:
             return state;
     }
