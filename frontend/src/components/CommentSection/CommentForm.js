@@ -41,7 +41,7 @@ export default function CommentForm({ user, post, page }) {
                             value={comment}
                             onChange={(e) => setComment(e.target.value)} />
                         <button className="submit-comment" type='submit'
-                            onClick={() => { setComment(comment.trim()) }}>Post</button>
+                            onClick={() => { setComment(comment.trim()) }}><b>Post</b></button>
                     </div>
                 )}
                 {page === 'newsfeed' && (
