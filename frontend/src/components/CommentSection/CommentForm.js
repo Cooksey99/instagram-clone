@@ -49,6 +49,7 @@ export default function CommentForm({ user, post, page }) {
                         <button className="submit-comment" type='submit'
                             onClick={() => {
                                 setComment(comment.trim())
+                                
                             }}>Post</button>
                     </div>
                 )}

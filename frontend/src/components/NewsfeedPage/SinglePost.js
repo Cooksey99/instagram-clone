@@ -35,7 +35,7 @@ export default function SinglePost({ post, user }) {
     useEffect(() => {
         // console.log('post', post.post.id)
         dispatch(fetchGetPosts());
-        dispatch(fetchPostData(post.id));
+        dispatch(fetchPostData(post.id))
     }, [dispatch])
 
     return (
