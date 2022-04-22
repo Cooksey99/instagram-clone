@@ -32,3 +32,8 @@
 .error::placeholder {
     color: red;
 }
+.error-text {
+    position: sticky;
+    font-size: small;
+    color: red;
+}
