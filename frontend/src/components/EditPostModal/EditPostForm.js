@@ -35,15 +35,14 @@ export default function EditPostForm({ post, user, setShowModal }) {
 
     return (
         <>
-            <section id='edit-post'>
+            <form id='edit-post' onSubmit={() => {
+                handleEdit();
+                setShowModal(false);
+            }}>
                 <div id='edit-post-header'>
-                    <button className='cancel-button' onClick={() => setShowModal(false)}>Cancel</button>
+                    <button className='cancel-button' type='button' onClick={() => setShowModal(false)}>Cancel</button>
                     <h3>Edit Form</h3>
-                    <button className='done-button' onClick={() => {
-                        setCaption(caption.trim());
-                        handleEdit();
-                        setShowModal(false);
-                    }}>Done</button>
+                    <button className='done-button' type='submit' onClick={() => setPostCaption(postCaption.trim())}>Done</button>
                 </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
@@ -67,7 +66,7 @@ export default function EditPostForm({ post, user, setShowModal }) {
                         </div>
                     </div>
                 </div>
-            </section>
+            </form>
         </>
     )
 }
