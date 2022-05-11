@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined'; import './NewsfeedPage.css'
 import PostSettingModal from "../PostSettingModal";
@@ -12,6 +12,7 @@ import NewsfeedPost from "./NewsfeedPost";
 export default function SinglePost({ post, user }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
 
     const [comment, setComment] = useState('');
     const [postModal, setPostModal] = useState(false);
@@ -35,7 +36,9 @@ export default function SinglePost({ post, user }) {
     useEffect(async () => {
         // console.log('post', post.post.id)
         await dispatch(fetchGetPosts());
-        await dispatch(fetchPostData(post.id))
+        // if () {
+        //     dispatch(fetchPostData(post.id))
+        // }
     }, [dispatch])
 
     return (

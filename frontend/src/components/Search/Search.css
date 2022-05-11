@@ -9,6 +9,7 @@
 }
 input.search-bar {
     height: 36px;
+    width: 100%;
     border: none;
     background: none;
 }

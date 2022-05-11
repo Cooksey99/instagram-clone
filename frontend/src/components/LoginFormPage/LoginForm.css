@@ -95,12 +95,8 @@
 
 } */
 .phone-animation-container {
+    background-image: url("https://www.instagram.com/static/images/homepage/phones/home-phones-2x.png/cbc7174b4f05.png");
     background-size: 468.32px 634.15px;
     align-self: center;
     height: 581.15px;
-}
-@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 1.5dppx) {
-    .phone-animation-container {
-        background-image: url("https://www.instagram.com/static/images/homepage/phones/home-phones-2x.png/cbc7174b4f05.png");
-    }
 }
