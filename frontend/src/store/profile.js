@@ -41,7 +41,9 @@ export default function reducer(state = initialState, action) {
       newState.user = action.user;
       return newState;
     case SEARCH_USER:
-      newState.search = action.users
+      if (!action.users) delete newState.search;
+      else newState.search = action.users;
+      return newState;
     default:
       return state;
   };
