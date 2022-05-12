@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchEditPosts, fetchPostData } from '../../store/posts';
+import { fetchEditPosts, fetchGetPosts, fetchPostData } from '../../store/posts';
 import './EditPostForm.css';
 
-export default function EditPostForm({ post, user, setShowModal }) {
+export default function EditPostForm({ post, user, setShowModal, openModal }) {
 
     const dispatch = useDispatch();
     const location = useLocation();
@@ -27,9 +27,11 @@ export default function EditPostForm({ post, user, setShowModal }) {
             image: post.image,
             caption: postCaption
         }
-        dispatch(fetchEditPosts(newPost, id));
-        setPostCaption(post?.caption)
+        await dispatch(fetchEditPosts(newPost, id));
+        setPostCaption(post?.caption);
+        // dispatch(fetchGetPosts());
         // dispatch(fetchPostData(post.id));
+        openModal(false);
     }
 
 
@@ -42,16 +44,20 @@ export default function EditPostForm({ post, user, setShowModal }) {
                 <div id='edit-post-header'>
                     <button className='cancel-button' type='button' onClick={() => setShowModal(false)}>Cancel</button>
                     <h3>Edit Form</h3>
-                    <button className='done-button' type='submit' onClick={() => setPostCaption(postCaption.trim())}>Done</button>
+                    <button className='done-button' type='submit' onClick={() => {
+                        setPostCaption(postCaption.trim());
+                    }}>Done</button>
                 </div>
                 <div id='edit-post-modal'>
                     <div id="edit-post-left">
-                        <img src={post?.image} alt='image' />
+                        <img src={post?.image} alt='image'
+                        onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}/>
                     </div>
                     <div id="edit-post-right">
                         <div id='edit-post-top-bar'>
                             <div className='post-modal-profile-bar'>
-                                <img src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
+                                <img src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'}
+                                onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                                 <p><b>{user?.username}</b></p>
                             </div>
                         </div>

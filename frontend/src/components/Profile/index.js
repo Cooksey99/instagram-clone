@@ -31,7 +31,8 @@ export default function Profile() {
             <section id="profile-page">
                 <div className='profile-info'>
                     <div className="divider">
-                        <img className='profile-image' src='https://register.pravasikerala.org/public/images/avatar5.png' alt='profile image' />
+                        <img className='profile-image' src='https://register.pravasikerala.org/public/images/avatar5.png'
+                        onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                     </div>
                     <div className="divider">
                         <div className="main-tab">

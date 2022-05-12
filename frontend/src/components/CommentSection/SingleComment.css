@@ -55,11 +55,9 @@
 .comment-form button {
     all: unset;
     width: 10%;
-}
-.submit-comment {
-    color: var(--sp-button-blue);
-}
+    color: var(--sp-button-blue) !important;
 
+}
 
 /* EDIT COMMENT FORM */
 .edit-comment-form {
@@ -127,4 +125,8 @@
     border: var(--sp-border) !important;
     color: black !important;
     background: white !important;
+}
+
+button.delete-comment {
+    background-color: #ed4956;
 }

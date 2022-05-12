@@ -43,7 +43,8 @@ function LoginFormPage() {
         <div id="login-left">
           <div className="phone-animation-container">
             <div className="phone-animation">
-              <img alt="" className="phone-image" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot1-2x.png/cfd999368de3.png" />
+              <img alt="" className="phone-image" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot1-2x.png/cfd999368de3.png"
+              onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}/>
               {/* <img alt="" className="phone-image" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot2-2x.png/80b8aebdea57.png" />
               <img alt="" className="phone-image" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot3-2x.png/fe2540684ab2.png" />
               <img alt="" className="phone-image" src="https://www.instagram.com/static/images/homepage/screenshots/screenshot4-2x.png/8e9224a71939.png" /> */}

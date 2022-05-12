@@ -48,6 +48,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
         <>
             <section className="single-comment">
                 <img className='profile-img' onClick={() => history.push(`/profile/${user?.id}`)}
+                onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')}
                     src={user?.image ? user?.image : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='profile image' />
                 <div>
                     <p><b>{user?.username}</b> {comment?.comment}</p>
@@ -68,7 +69,7 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
                             <div className="edit-buttons">
                                 <button type="button" className="cancel-button-comment"
                                     onClick={() => setEditComment(false)}>Cancel</button>
-                                <button type="button" onClick={handleDelete}>Delete</button>
+                                <button type="button" className='delete-comment' onClick={handleDelete}>Delete</button>
                             </div>
                         </div>
                     </form>

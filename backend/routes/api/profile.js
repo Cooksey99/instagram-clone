@@ -1,6 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Post, User, Comment } = require("../../db/models")
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -94,13 +95,19 @@ router.get('/:id', asyncHandler(async (req, res) => {
     res.json(user);
 }));
 // Search user by username
-router.get('/:username', asyncHandler(async (req, res) => {
-    const { username } = req.params;
-    const user = await User.findAll({
+router.get('/search/:string', asyncHandler(async (req, res) => {
+    const { string } = req.params;
+    const userList = await User.findAll({
         where: {
-            username: username
+            username: {
+                [Op.iLike]: `%${string}%`
+            }
         }
     });
+
+    let users = userList.map(user => user);
+    console.log('\n\n' + users + '\n\n')
+    res.json(users);
 }))
 
 module.exports = router;

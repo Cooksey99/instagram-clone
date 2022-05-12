@@ -3,16 +3,18 @@ import { Modal } from "../../context/Modal";
 import EditPostForm from "./EditPostForm";
 
 
-export default function EditPostModal({ post, user, setPostCaption }) {
+export default function EditPostModal({ post, user, setPostCaption, openModal }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <button className='post-setting-tab' onClick={() => setShowModal(true)}>Edit</button>
+            <button className='post-setting-tab' onClick={() => {
+                setShowModal(true);
+            }}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div className="modal-border">
-                        <EditPostForm post={post} user={user} setShowModal={setShowModal} setPostCaption={setPostCaption} />
+                        <EditPostForm post={post} user={user} setShowModal={setShowModal} setPostCaption={setPostCaption} openModal={openModal} />
                     </div>
                 </Modal>
             )}

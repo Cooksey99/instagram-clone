@@ -68,3 +68,10 @@ button.delete {
 .modal-border {
     border-radius: 10px;
 }
+
+.delete-option {
+    color: #ED4956;
+}
+.delete-pop-background.delete-option {
+    color: #ED4956;
+}

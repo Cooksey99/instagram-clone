@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Modal } from '../../context/Modal';
 import { fetchPostComment, fetchPostData } from '../../store/posts';
+import PostModal from '../Profile/PostModal';
 
 export default function CommentForm({ user, post, page }) {
 
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
+    const [postModal, setPostModal] = useState(false);
+    const sessionUser = useSelector(state => state?.session?.user);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -19,6 +23,7 @@ export default function CommentForm({ user, post, page }) {
         await dispatch(fetchPostComment(commentData));
         // dispatch(fetchPostData(post.id));
         setComment('');
+        if (page === 'newsfeed') setPostModal(true);
     }
 
     useEffect(async () => {
@@ -36,7 +41,7 @@ export default function CommentForm({ user, post, page }) {
                             value={comment}
                             onChange={(e) => setComment(e.target.value)} />
                         <button className="submit-comment" type='submit'
-                            onClick={() => { setComment(comment.trim()) }}>Post</button>
+                            onClick={() => { setComment(comment.trim()) }}><b>Post</b></button>
                     </div>
                 )}
                 {page === 'newsfeed' && (
@@ -49,11 +54,15 @@ export default function CommentForm({ user, post, page }) {
                         <button className="submit-comment" type='submit'
                             onClick={() => {
                                 setComment(comment.trim())
-                            }}>Post</button>
+                            }}><b>Post</b></button>
                     </div>
                 )}
-
             </form>
+            {postModal && (
+                <Modal onClose={() => setPostModal(false)}>
+                    <PostModal sessionUser={sessionUser} user={user} post={post} />
+                </Modal>
+            )}
         </>
     )
 }
