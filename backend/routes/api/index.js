@@ -4,6 +4,7 @@ const usersRouter = require("./users.js");
 const newsfeedRouter = require("./newsfeed.js");
 const profileRouter = require("./profile.js");
 const commentRouter = require("./comment.js");
+const followRouter = require("./follow.js");
 
 // // GET /api/set-token-cookie
 // const asyncHandler = require('express-async-handler');
@@ -46,5 +47,6 @@ router.use("/newsfeed", newsfeedRouter);
 router.use("/users", usersRouter);
 router.use("/profile", profileRouter);
 router.use("/comment", commentRouter);
+router.user("/follow", followRouter);
 
 module.exports = router;
