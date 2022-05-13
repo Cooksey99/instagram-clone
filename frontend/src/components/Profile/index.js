@@ -36,7 +36,10 @@ export default function Profile() {
                     </div>
                     <div className="divider">
                         <div className="main-tab">
-                            <h2>{user?.username}</h2>
+                            <div>
+                                <h2>{user?.username}</h2>
+                                <button className="follow-button">Follow</button>
+                            </div>
                             <div className='edit-profile'>
                                 {/* <button>Edit Profile</button> */}
                             </div>
@@ -44,8 +47,8 @@ export default function Profile() {
                         </div>
                         <div className="main-tab middle-tab">
                             <p><b>{userPosts?.length}</b> posts</p>
-                            {/* <p><b>0</b> followers</p>
-                            <p><b>0</b> following</p> */}
+                            <p><b>0</b> followers</p>
+                            <p><b>0</b> following</p>
                             <p></p>
                             <p></p>
                         </div>
