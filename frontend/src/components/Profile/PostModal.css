@@ -1,5 +1,5 @@
 #post-modal {
-    width: 120vh;
+    width: 90vw;
     height: 80vh;
     display: flex;
     box-sizing: border-box;
@@ -32,7 +32,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 50%;
+    gap: 40%;
     border-bottom: var(--sp-border);
 }
 #post-modal-top-bar img {
@@ -44,18 +44,43 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-left: 12px;
 }
 .dot-menu {
     cursor: pointer;
+    margin-right: 12px;
 }
 .comment-section {
     height: 100%;
     overflow-y: scroll;
 }
 
-/* .comment-post-section {
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-} */
+@media screen and (max-width: 600px) {
+    #post-modal {
+        display: flex;
+        flex-direction: column;
+        height: 80vh;
+    }
+    /* acts as top on mobile */
+    #post-modal-left {
+        width: 100%;
+        height: 40%;
+        background-color: black;
+    }
+    #post-modal-right {
+        width: 100%;
+        height: 60%;
+        overflow-y: scroll;
+    }
+    .post-modal-profile-bar {
+        margin-left: 0;
+    }
+    .dot-menu {
+        margin-right: 12px;
+    }
+    .comment-section {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+}

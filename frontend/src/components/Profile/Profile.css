@@ -3,24 +3,22 @@
     width: 975px;
     box-sizing: border-box;
 }
-.profile-info {
+div.profile-info {
     display: flex;
-    justify-content: space-around;
-    width: 98%;
-    margin: auto;
+    justify-content: center;
+    gap: 2vw;
+    width: 100%;
     padding-bottom: 20px;
     border-bottom: var(--sp-border);
 }
 
 .profile-image {
-    margin-left: 50px;
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    float: right;
 }
-.main-tab {
-    margin-left: 0;
-}
+
 .main-tab button {
     all: unset;
     height: 30px;
@@ -55,13 +53,6 @@ button.follow-button {
     color: white;
     font-weight: 500;
 }
-div.bio-tab {
-
-}
-
-.divider {
-    width: 33%;
-}
 
 /*  */
 
@@ -94,4 +85,32 @@ div.bio-tab {
     height: 293px;
     object-fit: cover;
     margin: auto;
+}
+
+@media screen and (max-width: 1000px) {
+    section#profile-page {
+        width: 100%;
+    }
+    div.image-div {
+       margin-top: 2vh;
+    }
+    img.profile-image {
+        width: 15vw;
+        height: 15vw;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    div.divider {
+        width: 0;
+    }
+    div#all-posts {
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+        margin: auto;
+    }
+    div.single-post-image img{
+        width: 28vw;
+        height: 28vw;
+    }
 }

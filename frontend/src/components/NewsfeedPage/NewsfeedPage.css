@@ -121,3 +121,49 @@
     height: 56px;
 
 }
+
+@media screen and (max-width: 600px) {
+    section#newsfeed-page {
+        width: 100%;
+        margin: 0;
+    }
+    section#newsfeed-sidebar {
+        display: none;
+    }
+    div#newsfeed-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+    }
+    div.single-post-contain {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        padding: none;
+        width: inherit;
+        height: inherit;
+    }
+    div.post-pic img{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1000px) and (min-width: 601px) {
+    div#newsfeed-container {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+    }
+    section.single-post {
+        width: 100%;
+    }
+    div#fixed-sidebar {
+        width: 20%;
+    }
+    div.post-pic img{
+        width: 100%;
+    }
+}

@@ -34,6 +34,7 @@
   top: 0;
   margin-top: 0;
   margin-right: 55px;
+  margin-left: 0;
   padding: 14px 0 14px 0;
   border-bottom: var(--sp-border);
   z-index: 5;

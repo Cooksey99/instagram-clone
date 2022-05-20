@@ -15,8 +15,8 @@ export default function Profile() {
     const { id } = useParams();
 
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
-    const [modalPost, setModalPost] = useState({});
+    // const [showModal, setShowModal] = useState(false);
+    // const [modalPost, setModalPost] = useState({});
 
     const currentUser = useSelector(state => state?.session?.user?.id);
     const user = useSelector(state => state?.profile?.user);
@@ -24,25 +24,23 @@ export default function Profile() {
     const followers = useSelector(state => state?.profile?.follows?.followers);
     const following = useSelector(state => state?.profile?.follows?.following);
 
-    const [sameUser, setSameUser] = useState(currentUser?.id === id);
-
     useEffect(() => {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
         dispatch(fetchGetFollows(id));
         dispatch(restoreUser())
-        console.log(currentUser === id, currentUser + '===' + id);
+
     }, [dispatch, id])
 
     return (
         <>
             <section id="profile-page">
                 <div className='profile-info'>
-                    <div className="divider">
+                    <div className='image-div'>
                         <img className='profile-image' src='https://register.pravasikerala.org/public/images/avatar5.png'
                             onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                     </div>
-                    <div className="divider">
+                    <div>
                         <div className="main-tab">
                             <div>
                                 <h2>{user?.username}</h2>
@@ -65,9 +63,6 @@ export default function Profile() {
                             <p>{user?.bio}</p>
 
                         </div>
-                    </div>
-                    <div className="divider">
-
                     </div>
                 </div>
 
