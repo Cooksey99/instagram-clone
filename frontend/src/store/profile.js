@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const FIND_USER = 'session/FIND_USER';
 const SEARCH_USER = 'session/SEARCH_USER';
+const GET_FOLLOWS = 'session/GET_FOLLOWS';
 
 const findUser = (user) => ({
   type: FIND_USER,
@@ -10,6 +11,10 @@ const findUser = (user) => ({
 const searchUser = (users) => ({
   type: SEARCH_USER,
   users
+});
+const getFollows = (follows) => ({
+  type: GET_FOLLOWS,
+  follows
 })
 
 export const fetchFindUser = (id) => async dispatch => {
@@ -19,20 +24,20 @@ export const fetchFindUser = (id) => async dispatch => {
   dispatch(findUser(data));
 }
 export const fetchSearchUser = (string) => async dispatch => {
-
-  // let username = [];
-  // for (let i = 0; i < string.length; i++) {
-  //   username.push(username.charCodeAt(i))
-  // }
-  // console.log('result', username)
-
   const response = await csrfFetch(`/api/profile/search/${string}`);
 
   const data = await response.json();
   dispatch(searchUser(data));
 }
+export const fetchGetFollows = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/follow/${id}`)
 
-const initialState = { user: {}, search: {} };
+  console.log('testing the user id', id)
+  const data = await response.json();
+  dispatch(getFollows(data));
+}
+
+const initialState = { user: {}, search: {}, follows: {} };
 
 export default function reducer(state = initialState, action) {
   let newState = state;
@@ -43,6 +48,9 @@ export default function reducer(state = initialState, action) {
     case SEARCH_USER:
       if (!action.users) delete newState.search;
       else newState.search = action.users;
+      return newState;
+    case GET_FOLLOWS:
+      newState.follows = action.follows;
       return newState;
     default:
       return state;

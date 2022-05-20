@@ -5,7 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
 import { useParams } from "react-router-dom";
-import { fetchFindUser } from "../../store/profile";
+import { fetchFindUser, fetchGetFollows } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
 import Footer from "../Footer/Footer";
 
@@ -23,6 +23,7 @@ export default function Profile() {
     useEffect(() => {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
+        dispatch(fetchGetFollows(id))
         // console.log('Profile', userPosts)
     }, [dispatch, id])
 

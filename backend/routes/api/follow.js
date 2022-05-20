@@ -4,6 +4,16 @@ const { Follow } = require('../../db/models');
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/:id', asyncHandler(async (req, res) => {
+    id =  req.params;
+    console.log('\n\n', id, '\n\n')
+    const follows = await post.findAll({
+        where: {
+            following_user_id: id
+        }
+    });
 
+    res.json(follows);
 }));
+
+module.exports = router;

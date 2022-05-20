@@ -47,6 +47,6 @@ router.use("/newsfeed", newsfeedRouter);
 router.use("/users", usersRouter);
 router.use("/profile", profileRouter);
 router.use("/comment", commentRouter);
-router.user("/follow", followRouter);
+router.use("/follow", followRouter);
 
 module.exports = router;
