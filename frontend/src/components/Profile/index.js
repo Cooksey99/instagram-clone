@@ -5,9 +5,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
 import { useParams } from "react-router-dom";
-import { fetchFindUser } from "../../store/profile";
+import { fetchFindUser, fetchGetFollows } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
 import Footer from "../Footer/Footer";
+import { restoreUser } from "../../store/session";
 
 export default function Profile() {
 
@@ -17,13 +18,20 @@ export default function Profile() {
     const [showModal, setShowModal] = useState(false);
     const [modalPost, setModalPost] = useState({});
 
+    const currentUser = useSelector(state => state?.session?.user?.id);
     const user = useSelector(state => state?.profile?.user);
-    const userPosts = useSelector(state => state?.newsfeed?.userPosts)
+    const userPosts = useSelector(state => state?.newsfeed?.userPosts);
+    const followers = useSelector(state => state?.profile?.follows?.followers);
+    const following = useSelector(state => state?.profile?.follows?.following);
+
+    const [sameUser, setSameUser] = useState(currentUser?.id === id);
 
     useEffect(() => {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
-        // console.log('Profile', userPosts)
+        dispatch(fetchGetFollows(id));
+        dispatch(restoreUser())
+        console.log(currentUser === id, currentUser + '===' + id);
     }, [dispatch, id])
 
     return (
@@ -32,11 +40,14 @@ export default function Profile() {
                 <div className='profile-info'>
                     <div className="divider">
                         <img className='profile-image' src='https://register.pravasikerala.org/public/images/avatar5.png'
-                        onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
+                            onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                     </div>
                     <div className="divider">
                         <div className="main-tab">
-                            <h2>{user?.username}</h2>
+                            <div>
+                                <h2>{user?.username}</h2>
+                                <button className="follow-button">Follow</button>
+                            </div>
                             <div className='edit-profile'>
                                 {/* <button>Edit Profile</button> */}
                             </div>
@@ -44,8 +55,8 @@ export default function Profile() {
                         </div>
                         <div className="main-tab middle-tab">
                             <p><b>{userPosts?.length}</b> posts</p>
-                            {/* <p><b>0</b> followers</p>
-                            <p><b>0</b> following</p> */}
+                            <p><b>{followers?.length}</b> followers</p>
+                            <p><b>{following?.length}</b> following</p>
                             <p></p>
                             <p></p>
                         </div>
@@ -74,7 +85,7 @@ export default function Profile() {
                     ))}
                 </div>
 
-            <Footer />
+                <Footer />
             </section>
 
         </>

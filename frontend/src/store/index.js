@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   newsfeed,
   profile,
-  comment
+  // comment,
 });
 
 let enhancer;
