@@ -1,0 +1,23 @@
+div.follows-container {
+    width: 25vw;
+    min-width: 350px;
+    overflow-y: scroll;
+}
+div.follows-container h3 {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    border-bottom: var(--sp-border);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.single-follow {
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+    align-items: center;
+    margin: 0 20px;
+    cursor: pointer;
+}

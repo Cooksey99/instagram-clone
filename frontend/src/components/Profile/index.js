@@ -9,6 +9,7 @@ import { fetchFindUser, fetchGetFollows } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
 import Footer from "../Footer/Footer";
 import { restoreUser } from "../../store/session";
+import OpenFollows from "../FollowModal";
 
 export default function Profile() {
 
@@ -21,8 +22,7 @@ export default function Profile() {
     const currentUser = useSelector(state => state?.session?.user?.id);
     const user = useSelector(state => state?.profile?.user);
     const userPosts = useSelector(state => state?.newsfeed?.userPosts);
-    const followers = useSelector(state => state?.profile?.follows?.followers);
-    const following = useSelector(state => state?.profile?.follows?.following);
+    const follows = useSelector(state => state?.profile?.follows);
 
     useEffect(() => {
         dispatch(fetchFindUser(id));
@@ -53,8 +53,8 @@ export default function Profile() {
                         </div>
                         <div className="main-tab middle-tab">
                             <p><b>{userPosts?.length}</b> posts</p>
-                            <p><b>{followers?.length}</b> followers</p>
-                            <p><b>{following?.length}</b> following</p>
+                            <OpenFollows follows={follows} type={"followers"} />
+                            <OpenFollows follows={follows} type={"following"} />
                             <p></p>
                             <p></p>
                         </div>
