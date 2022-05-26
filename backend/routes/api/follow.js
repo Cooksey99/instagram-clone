@@ -50,8 +50,8 @@ router.delete('/unfollow/:id', asyncHandler(async (req, res) => {
 }));
 
 // follow user
-router.post('/follow', asyncHandler(async (req, res) => {
-    const { followed_user_id, following_user_id } = req.body;
+router.post('/follow_user', asyncHandler(async (req, res) => {
+    // const { following_user_id, followed_user_id } = req.body;
 
     const follow = await Follow.create({ ...req.body });
     res.json(follow);
