@@ -161,30 +161,15 @@ export default function reducer(state = initialState, action) {
         //
         // Comment section
         case POST_COMMENT:
-            // newState.singlePost = [...newState.singlePost, action.comment];
-            // console.log('action.comment', action.comment)
             newState.singlePost.comments = [...newState.singlePost.comments, action.comment]
-
-            // console.log(newState.singlePost.comments);
             return newState;
         case EDIT_COMMENT:
-            // newState.singlePost.comments = newState.singlePost.comments.map(comment => comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
             newState.singlePost.comments = newState.singlePost.comments.map(comment => comment.comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
             console.log(action.comment);
-
             return newState;
         case DELETE_COMMENT:
-            // newState.singlePost = newState.singlePost.filter(comment => comment.comment.id !== action.commentId);
             newState.singlePost.comments = newState.singlePost.comments.filter(comment => comment.comment.id !== action.commentId);
             return newState;
-            // for (let ele in newState.singlePost) {
-            //     console.log(newState.singlePost[ele])
-            //     // if (ele.comments.comment.id === action.commentId) {
-            //     //     console.log(newState.singlePost[ele])
-            //     //     // delete newState.singlePost[ele];
-            //     //     return newState;
-            //     // }
-            // }
         default:
             return state;
     }

@@ -1,6 +1,8 @@
 div.follows-container {
     width: 25vw;
+    height: 30vh;
     min-width: 350px;
+    min-height: 300px;
     overflow-y: scroll;
 }
 div.follows-container h3 {

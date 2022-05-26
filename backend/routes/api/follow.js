@@ -28,11 +28,33 @@ router.get('/:id', asyncHandler(async (req, res) => {
     }
 
     let followingObj = { followers, users: followerUsers };
-    let followersObj = {following, users: followedUsers};
+    let followersObj = { following, users: followedUsers };
 
     const follows = { followingObj, followersObj };
 
     res.json(follows);
 }));
+
+// unfollower user
+router.delete('/unfollow/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const follow = await Follow.findOne({
+        where: {
+            followed_user_id: id
+        }
+    });
+    await follow.destroy();
+
+    res.json();
+}));
+
+// follow user
+router.post('/follow', asyncHandler(async (req, res) => {
+    const { followed_user_id, following_user_id } = req.body;
+
+    const follow = await Follow.create({ ...req.body });
+    res.json(follow);
+}))
 
 module.exports = router;
