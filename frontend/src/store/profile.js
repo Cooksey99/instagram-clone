@@ -27,6 +27,7 @@ const followUser = (follow) => ({
   follow
 });
 
+
 export const fetchFindUser = (id) => async dispatch => {
   const response = await csrfFetch(`/api/profile/${id}`);
 

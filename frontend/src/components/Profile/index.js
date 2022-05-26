@@ -19,7 +19,7 @@ export default function Profile() {
     // const [showModal, setShowModal] = useState(false);
     // const [modalPost, setModalPost] = useState({});
 
-    const currentUser = useSelector(state => state?.session?.user?.id);
+    const currentUser = useSelector(state => state?.session?.user);
     const user = useSelector(state => state?.profile?.user);
     const userPosts = useSelector(state => state?.newsfeed?.userPosts);
     const follows = useSelector(state => state?.profile?.follows);
@@ -44,10 +44,14 @@ export default function Profile() {
                         <div className="main-tab">
                             <div>
                                 <h2>{user?.username}</h2>
-                                <button onClick={() => {
-                                    dispatch(fetchFollowUser(currentUser, user?.id))
-                                }}
-                                    className="follow-button">Follow</button>
+                                {currentUser?.id !== user?.id && (
+                                    <button onClick={() => {
+                                        dispatch(fetchFollowUser(currentUser?.id, user?.id))
+                                    }}
+                                        className="follow-button">
+                                        {follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0 ? 'Unfollow' : 'Follow'}
+                                    </button>
+                                )}
                             </div>
                             <div className='edit-profile'>
                                 {/* <button>Edit Profile</button> */}
