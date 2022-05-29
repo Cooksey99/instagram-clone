@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
-import { fetchUnfollowUser } from "../../store/profile";
+import { fetchRemoveFollower, fetchUnfollowUser } from "../../store/profile";
 import './FollowModal.css';
 
 
@@ -29,7 +29,10 @@ export default function FollowModal({ follows, type, setShowModal }) {
                                 <img className="profile-img"
                                     src={follow?.profile_picture ? follow?.profile_picture : 'https://register.pravasikerala.org/public/images/avatar5.png'} alt='user profile image' />
                                 <p>{follow?.username}</p>
-                                <button>Remove</button>
+                                <button onClick={(e) => {
+                                    e.stopPropagation();
+                                    dispatch(fetchRemoveFollower(follow?.id));
+                                }}>Remove</button>
                             </div>
                         ))}
                     </div>

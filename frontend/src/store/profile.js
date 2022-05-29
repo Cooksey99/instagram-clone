@@ -4,6 +4,7 @@ const FIND_USER = 'session/FIND_USER';
 const SEARCH_USER = 'session/SEARCH_USER';
 const GET_FOLLOWS = 'session/GET_FOLLOWS';
 const UNFOLLOW_USER = 'session/UNFOLLOW_USER';
+const REMOVE_FOLLOWER = 'session/REMOVE_FOLLOWER';
 const FOLLOW_USER = 'session/FOLLOW_USER';
 
 const findUser = (user) => ({
@@ -19,6 +20,10 @@ const getFollows = (follows) => ({
   follows
 });
 const unfollowUser = (id) => ({
+  type: UNFOLLOW_USER,
+  id
+});
+const removeFollower = (id) => ({
   type: UNFOLLOW_USER,
   id
 });
@@ -54,6 +59,13 @@ export const fetchUnfollowUser = (id) => async dispatch => {
 
   dispatch(unfollowUser(id));
 };
+export const fetchRemoveFollower = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/follow/remove_follower/${id}`, {
+    method: 'DELETE'
+  });
+
+  dispatch(removeFollower(id));
+};
 export const fetchFollowUser = (following_user_id, followed_user_id) => async dispatch => {
   const response = await csrfFetch('/api/follow/follow_user', {
     method: 'POST',
@@ -79,7 +91,10 @@ export default function reducer(state = initialState, action) {
       return newState;
     case UNFOLLOW_USER:
       delete newState.follows.followersObj.followers[action.id];
-      delete newState.follows.followersObj.follwerUsers[action.id];
+      delete newState.follows.followersObj.followerUsers[action.id];
+    case REMOVE_FOLLOWER:
+      newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
+      newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id);
     case FOLLOW_USER:
       newState.follows[action.follow.id] = action.follow;
       return newState

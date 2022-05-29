@@ -5,7 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
 import { useParams } from "react-router-dom";
-import { fetchFindUser, fetchGetFollows, fetchFollowUser } from "../../store/profile";
+import { fetchFindUser, fetchGetFollows, fetchFollowUser, fetchUnfollowUser } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
 import Footer from "../Footer/Footer";
 import { restoreUser } from "../../store/session";
@@ -46,7 +46,9 @@ export default function Profile() {
                                 <h2>{user?.username}</h2>
                                 {currentUser?.id !== user?.id && (
                                     <button onClick={() => {
-                                        dispatch(fetchFollowUser(currentUser?.id, user?.id))
+                                        if (follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0) {
+                                            dispatch(fetchUnfollowUser(user?.id));
+                                        } else dispatch(fetchFollowUser(currentUser?.id, user?.id));
                                     }}
                                         className="follow-button">
                                         {follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0 ? 'Unfollow' : 'Follow'}
