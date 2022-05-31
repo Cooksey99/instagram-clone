@@ -48,6 +48,19 @@ router.delete('/unfollow/:id', asyncHandler(async (req, res) => {
 
     res.json();
 }));
+// remove a follower
+router.delete('/remove_follower/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const follow = await Follow.findOne({
+        where: {
+            following_user_id: id
+        }
+    });
+    await follow.destroy();
+
+    res.json();
+}))
 
 // follow user
 router.post('/follow_user', asyncHandler(async (req, res) => {
@@ -56,5 +69,6 @@ router.post('/follow_user', asyncHandler(async (req, res) => {
     const follow = await Follow.create({ ...req.body });
     res.json(follow);
 }))
+
 
 module.exports = router;

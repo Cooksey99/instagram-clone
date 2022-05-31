@@ -90,13 +90,13 @@ export default function reducer(state = initialState, action) {
       newState.follows = action.follows;
       return newState;
     case UNFOLLOW_USER:
-      delete newState.follows.followersObj.followers[action.id];
-      delete newState.follows.followersObj.followerUsers[action.id];
+      newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
+      newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id)
     case REMOVE_FOLLOWER:
       newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
       newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id);
     case FOLLOW_USER:
-      newState.follows[action.follow.id] = action.follow;
+      newState.follows.followersObj[action.follow.id] = action.follow;
       return newState
     default:
       return state;
