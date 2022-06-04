@@ -64,9 +64,14 @@ router.delete('/remove_follower/:id', asyncHandler(async (req, res) => {
 
 // follow user
 router.post('/follow_user', asyncHandler(async (req, res) => {
-    // const { following_user_id, followed_user_id } = req.body;
+    const { following_user_id, followed_user_id } = req.body;
 
-    const follow = await Follow.create({ ...req.body });
+    const follower = await Follow.create({ ...req.body });
+    const user = await User.findByPk(following_user_id);
+
+
+    const follow = { follower, user };
+
     res.json(follow);
 }))
 

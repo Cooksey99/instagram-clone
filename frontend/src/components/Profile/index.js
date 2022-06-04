@@ -45,7 +45,8 @@ export default function Profile() {
                             <div>
                                 <h2>{user?.username}</h2>
                                 {currentUser?.id !== user?.id && (
-                                    <button onClick={() => {
+                                    <button type="button"
+                                        onClick={() => {
                                         if (follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0) {
                                             dispatch(fetchUnfollowUser(user?.id));
                                         } else dispatch(fetchFollowUser(currentUser?.id, user?.id));

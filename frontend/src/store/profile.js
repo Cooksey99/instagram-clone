@@ -90,13 +90,17 @@ export default function reducer(state = initialState, action) {
       newState.follows = action.follows;
       return newState;
     case UNFOLLOW_USER:
-      newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
-      newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id)
+      newState.follows.followingObj.followers.filter(follow => follow.followed_user_id === action.id);
+      newState.follows.followingObj.users.filter(follow => follow.id === action.id)
+      console.log(newState.follows.followingObj)
+      return newState;
     case REMOVE_FOLLOWER:
-      newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
-      newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id);
-    case FOLLOW_USER:
-      newState.follows.followersObj[action.follow.id] = action.follow;
+      // newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
+      // newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id);
+      return newState;
+      case FOLLOW_USER:
+      newState.follows.followersObj.followers[action.follow.follower.id] = action.follow.follower;
+      newState.follows.followersObj.users[action.follow.user.id] = action.follow.user;
       return newState
     default:
       return state;
