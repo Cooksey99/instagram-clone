@@ -23,3 +23,6 @@ div.single-follow {
     margin: 0 20px;
     cursor: pointer;
 }
+p.no-follow {
+   text-align: center;
+}

@@ -20,7 +20,7 @@ export default function FollowModal({ follows, type, setShowModal }) {
                 {type === "followers" && (
                     <div>
                         <h3>Followers</h3>
-                        {following?.length > 0 && following?.map(follow => (
+                        {following?.length > 1 && following?.map(follow => (
                             <div key={follow?.id} className='single-follow'
                                 onClick={() => {
                                     history.push(`/profile/${follow?.id}`);
@@ -37,10 +37,15 @@ export default function FollowModal({ follows, type, setShowModal }) {
                         ))}
                     </div>
                 )}
-                {type === "following" && followers?.length > 0 && (
+                {type === "followers" && following?.length <= 1 && (
+                    <div>
+                        <p className="no-follow">Not following anyone</p>
+                    </div>
+                )}
+                {type === "following" && followers?.length > 1 && (
                     <div>
                         <h3>Following</h3>
-                        {followers?.map(follow => (
+                        {followers?.length > 0 && followers?.map(follow => (
                             <div key={follow?.id} className='single-follow'
                                 onClick={() => {
                                     history.push(`/profile/${follow?.id}`);
@@ -55,6 +60,12 @@ export default function FollowModal({ follows, type, setShowModal }) {
                                 }}>Following</button>
                             </div>
                         ))}
+                    </div>
+                )}
+                {type === "following" && followers?.length <= 1 && (
+                    <div>
+                        <h3>Following</h3>
+                        <p className="no-follow">No followers</p>
                     </div>
                 )}
                 <p>{follows.length}</p>
