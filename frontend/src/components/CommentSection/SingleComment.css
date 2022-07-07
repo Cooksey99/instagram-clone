@@ -34,7 +34,7 @@
 }
 
 /* CommentForm CSS */
-.comment-form {
+div.comment-form {
     height: 49px;
     display: flex;
     align-items: center;
@@ -56,7 +56,8 @@
     all: unset;
     width: 10%;
     color: var(--sp-button-blue) !important;
-
+    cursor: pointer;
+    margin-right: 12px;
 }
 
 /* EDIT COMMENT FORM */

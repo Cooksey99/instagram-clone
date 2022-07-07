@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function NewsfeedPage({ user }) {
     const dispatch = useDispatch();
     const posts = useSelector(state => state?.newsfeed?.posts);
-    
+
 
     useEffect(() => {
         dispatch(fetchGetPosts())
@@ -20,8 +20,7 @@ export default function NewsfeedPage({ user }) {
             <section id='newsfeed-page'>
                 <div id="newsfeed-container">
                     {posts.length > 0 && posts.map(post => (
-                        <div key={post.id}>
-
+                        <div key={post.id} className='single-post-contain'>
                             <SinglePost post={post} user={user} />
                         </div>
                     ))}

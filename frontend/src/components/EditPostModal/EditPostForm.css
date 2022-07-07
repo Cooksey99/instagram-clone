@@ -20,7 +20,7 @@
 }
 
 #edit-post-modal {
-    width: 120vh;
+    width: 80vw;
     height: 80vh;
     display: flex;
     box-sizing: border-box;
@@ -44,9 +44,6 @@
     overflow-x: hidden;
     border-left: var(--sp-border);
 }
-#edit-post-top-bar {
-
-}
 #edit-post-top-bar img {
     height: 32px;
     width: 32px;
@@ -62,8 +59,21 @@
     outline: none;
 }
 .text-counter {
-    width: 100%;
+    width: 95%;
 }
 .text-counter p {
     float: right;
+}
+
+@media screen and (max-width: 600px) {
+    #edit-post-modal {
+        display: flex;
+        flex-direction: column;
+    }
+    #edit-post-left {
+        width: 100%;
+    }
+    #edit-post-right {
+        width: 100%;
+    }
 }

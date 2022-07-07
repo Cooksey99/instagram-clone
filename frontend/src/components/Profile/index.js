@@ -5,48 +5,62 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GridOnSharpIcon from '@mui/icons-material/GridOnSharp';
 import { fetchUserPosts } from "../../store/posts";
 import { useParams } from "react-router-dom";
-import { fetchFindUser, fetchGetFollows } from "../../store/profile";
+import { fetchFindUser, fetchGetFollows, fetchFollowUser, fetchUnfollowUser } from "../../store/profile";
 import ProfilePost from "./ProfilePost";
 import Footer from "../Footer/Footer";
 import { restoreUser } from "../../store/session";
+import OpenFollows from "../FollowModal";
 
 export default function Profile() {
 
     const { id } = useParams();
 
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
-    const [modalPost, setModalPost] = useState({});
+    // const [showModal, setShowModal] = useState(false);
+    // const [modalPost, setModalPost] = useState({});
 
-    const currentUser = useSelector(state => state?.session?.user?.id);
+    const currentUser = useSelector(state => state?.session?.user);
     const user = useSelector(state => state?.profile?.user);
     const userPosts = useSelector(state => state?.newsfeed?.userPosts);
-    const followers = useSelector(state => state?.profile?.follows?.followers);
-    const following = useSelector(state => state?.profile?.follows?.following);
-
-    const [sameUser, setSameUser] = useState(currentUser?.id === id);
+    const follows = useSelector(state => state?.profile?.follows);
 
     useEffect(() => {
         dispatch(fetchFindUser(id));
         dispatch(fetchUserPosts(id));
         dispatch(fetchGetFollows(id));
         dispatch(restoreUser())
-        console.log(currentUser === id, currentUser + '===' + id);
+
     }, [dispatch, id])
+
+    const handleFollow = (e) => {
+        // e.preventDefault();
+        dispatch(fetchFollowUser(currentUser?.id, user?.id));
+    }
 
     return (
         <>
             <section id="profile-page">
                 <div className='profile-info'>
-                    <div className="divider">
+                    <div className='image-div'>
                         <img className='profile-image' src='https://register.pravasikerala.org/public/images/avatar5.png'
                             onError={(e) => (e.target.onerror = null, e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')} alt='profile image' />
                     </div>
-                    <div className="divider">
+                    <div>
                         <div className="main-tab">
                             <div>
                                 <h2>{user?.username}</h2>
-                                <button className="follow-button">Follow</button>
+                                {currentUser?.id !== user?.id && (
+                                    <button type="submit"
+                                        onClick={() => {
+                                        // if (follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0) {
+                                        //     dispatch(fetchUnfollowUser(user?.id));
+                                        // } else dispatch(fetchFollowUser(currentUser?.id, user?.id));
+                                        handleFollow();
+                                    }}
+                                        className="follow-button">
+                                        {follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0 ? 'Unfollow' : 'Follow'}
+                                    </button>
+                                )}
                             </div>
                             <div className='edit-profile'>
                                 {/* <button>Edit Profile</button> */}
@@ -55,8 +69,8 @@ export default function Profile() {
                         </div>
                         <div className="main-tab middle-tab">
                             <p><b>{userPosts?.length}</b> posts</p>
-                            <p><b>{followers?.length}</b> followers</p>
-                            <p><b>{following?.length}</b> following</p>
+                            <OpenFollows follows={follows} type={"followers"} />
+                            <OpenFollows follows={follows} type={"following"} />
                             <p></p>
                             <p></p>
                         </div>
@@ -65,9 +79,6 @@ export default function Profile() {
                             <p>{user?.bio}</p>
 
                         </div>
-                    </div>
-                    <div className="divider">
-
                     </div>
                 </div>
 

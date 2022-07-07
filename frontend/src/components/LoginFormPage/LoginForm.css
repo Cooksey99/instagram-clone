@@ -100,3 +100,24 @@
     align-self: center;
     height: 581.15px;
 }
+
+@media screen and (max-width: 850px) {
+    #login-left {
+        display: none;
+        width: 0%;
+    }
+    #login-section {
+        width: 100%;
+    }
+    #login-right {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    #login-form-container {
+        margin: auto;
+    }
+}

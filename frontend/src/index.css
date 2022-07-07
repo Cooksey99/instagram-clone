@@ -8,6 +8,8 @@ html {
     --sp-button-blue: #0095f6;
     --sp-input-background: #e8f0fe;
     --sp-post-button-color: #0095f6;
+    padding: 0;
+    margin: 0;
 }
 .logo-name {
     all: unset;
