@@ -13,14 +13,20 @@ export default function FollowModal({ follows, type, setShowModal }) {
     const sessionUser = useSelector(state => state?.session?.user);
     const followers = follows?.followingObj?.users;
     const following = follows?.followersObj?.users;
+    const followersLength = follows?.followingObj?.followers;
+    const followingLength = follows?.followersObj?.following;
+
+        // useEffect(() => {
+        //     console.log(following[0])
+        // }, [])
 
     return (
         <>
             <div className="follows-container">
-                {type === "followers" && (
+                {type === "followers" && followingLength.length > 0 && (
                     <div>
                         <h3>Followers</h3>
-                        {following?.length > 1 && following?.map(follow => (
+                        {following?.map(follow => (
                             <div key={follow?.id} className='single-follow'
                                 onClick={() => {
                                     history.push(`/profile/${follow?.id}`);
@@ -37,15 +43,16 @@ export default function FollowModal({ follows, type, setShowModal }) {
                         ))}
                     </div>
                 )}
-                {type === "followers" && following?.length <= 1 && (
+                {type === "followers" && followingLength.length <= 0 && (
                     <div>
+                        <h3>Followers</h3>
                         <p className="no-follow">Not following anyone</p>
                     </div>
                 )}
-                {type === "following" && followers?.length > 1 && (
+                {type === "following" && followersLength.length > 0 && (
                     <div>
                         <h3>Following</h3>
-                        {followers?.length > 0 && followers?.map(follow => (
+                        {followers?.map(follow => (
                             <div key={follow?.id} className='single-follow'
                                 onClick={() => {
                                     history.push(`/profile/${follow?.id}`);
@@ -62,13 +69,13 @@ export default function FollowModal({ follows, type, setShowModal }) {
                         ))}
                     </div>
                 )}
-                {type === "following" && followers?.length <= 1 && (
+                {type === "following" && followersLength.length <= 0 && (
                     <div>
                         <h3>Following</h3>
                         <p className="no-follow">No followers</p>
                     </div>
                 )}
-                <p>{follows.length}</p>
+                {/* <p>{follows.length}</p> */}
             </div>
         </>
     )
