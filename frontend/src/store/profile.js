@@ -1,3 +1,4 @@
+import { unstable_detectScrollType } from "@mui/utils";
 import { csrfFetch } from "./csrf";
 
 const FIND_USER = 'session/FIND_USER';
@@ -90,9 +91,11 @@ export default function reducer(state = initialState, action) {
       newState.follows = action.follows;
       return newState;
     case UNFOLLOW_USER:
-      newState.follows.followingObj.followers.filter(follow => follow.followed_user_id === action.id);
-      newState.follows.followingObj.users.filter(follow => follow.id === action.id)
+      // newState.follows.followingObj.followers.filter(follow => follow.followed_user_id === action.id);
+      // newState.follows.followingObj.users.filter(user => user.id === action.id);
+      delete newState.follows.followersObj;
       console.log(newState.follows.followingObj)
+      console.log('unfollow id', action.id);
       return newState;
     case REMOVE_FOLLOWER:
       // newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);

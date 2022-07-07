@@ -32,6 +32,11 @@ export default function Profile() {
 
     }, [dispatch, id])
 
+    const handleFollow = (e) => {
+        // e.preventDefault();
+        dispatch(fetchFollowUser(currentUser?.id, user?.id));
+    }
+
     return (
         <>
             <section id="profile-page">
@@ -45,11 +50,12 @@ export default function Profile() {
                             <div>
                                 <h2>{user?.username}</h2>
                                 {currentUser?.id !== user?.id && (
-                                    <button type="button"
+                                    <button type="submit"
                                         onClick={() => {
-                                        if (follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0) {
-                                            dispatch(fetchUnfollowUser(user?.id));
-                                        } else dispatch(fetchFollowUser(currentUser?.id, user?.id));
+                                        // if (follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0) {
+                                        //     dispatch(fetchUnfollowUser(user?.id));
+                                        // } else dispatch(fetchFollowUser(currentUser?.id, user?.id));
+                                        handleFollow();
                                     }}
                                         className="follow-button">
                                         {follows?.followersObj?.users.filter(user => user?.id === currentUser?.id).length > 0 ? 'Unfollow' : 'Follow'}
