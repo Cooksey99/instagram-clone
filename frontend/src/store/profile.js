@@ -72,7 +72,9 @@ export const fetchFollowUser = (following_user_id, followed_user_id) => async di
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify({ following_user_id, followed_user_id })
-  })
+  });
+  const data = await response.json();
+  dispatch(followUser(data));
 };
 
 const initialState = { user: {}, search: {}, follows: {} };
