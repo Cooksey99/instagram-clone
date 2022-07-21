@@ -7,15 +7,18 @@ export default function OpenFollows({ follows, type }) {
     const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state?.session?.user);
 
+    useEffect(() => {
+        console.log('follows in modal', follows?.followingObj?.followers?.followers?.length)
+    }, []);
 
     return (
         <>
             <button onClick={() => setShowModal(true)}>
                 {type === "following" && (
-                    <p><b>{follows?.followingObj?.followers?.length}</b> following</p>
+                    <p><b>{follows?.followingObj?.followers?.followers?.length}</b> following</p>
                 )}
                 {type === "followers" && (
-                    <p><b>{follows?.followersObj?.following?.length}</b> followers</p>
+                    <p><b>{follows?.followersObj?.following?.following?.length}</b> followers</p>
                 )}
             </button>
             {showModal && (

@@ -13,12 +13,13 @@ export default function FollowModal({ follows, type, setShowModal }) {
     const sessionUser = useSelector(state => state?.session?.user);
     const followers = follows?.followingObj?.users;
     const following = follows?.followersObj?.users;
-    const followersLength = follows?.followingObj?.followers;
-    const followingLength = follows?.followersObj?.following;
+    const followersLength = follows?.followingObj?.followers?.followers;
+    const followingLength = follows?.followersObj?.following?.following;
 
-        // useEffect(() => {
-        //     console.log(following[0])
-        // }, [])
+        useEffect(() => {
+            console.log('followers', followers);
+            console.log('following', following);
+        }, [])
 
     return (
         <>

@@ -27,8 +27,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
         followedUsers[i] = await User.findByPk(following[i].following_user_id);
     }
 
-    let followingObj = { followers, users: followerUsers };
-    let followersObj = { following, users: followedUsers };
+    let followingObj = { followers: {followers}, users: followerUsers };
+    let followersObj = { following: {following}, users: followedUsers };
 
     const follows = { followingObj, followersObj };
 
@@ -45,7 +45,7 @@ router.delete('/unfollow/:id', asyncHandler(async (req, res) => {
         }
     });
     console.log('\n\n', follow, '\n\n');
-    
+
     await follow.destroy();
     res.json();
 }));

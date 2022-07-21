@@ -77,7 +77,7 @@ export const fetchFollowUser = (following_user_id, followed_user_id) => async di
   dispatch(followUser(data));
 };
 
-const initialState = { user: [], search: {}, follows: [] };
+const initialState = { user: {}, search: {}, follows: {} };
 
 export default function reducer(state = initialState, action) {
   let newState = state;
@@ -105,10 +105,11 @@ export default function reducer(state = initialState, action) {
       return newState;
       case FOLLOW_USER:
       console.log('reducer info:', action.follow);
-      newState.follows.followingObj.followers.push(action.follow.follower);
-      newState.follows.followingObj.users.push(action.follow.user);
-      // newState.follows.followersObj.following[action.follow.follower.id] = action.follow.follower;
-      // newState.follows.followersObj.users[action.follow.user.id] = action.follow.user;
+      // const followerId = action.follow.follower.id;
+      // const userId = action.follow.user.id;
+
+      // newState.follows.followersObj.following[followerId] = action.follow.follower;
+      // newState.follows.followersObj.users[userId] = action.follow.user;
       return newState
     default:
       return state;
