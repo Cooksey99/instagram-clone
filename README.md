@@ -33,3 +33,10 @@ This operates as a clone of Instagram.
   - Any invalid routes are redirected to a 404 route, which has not yet been designed.
   - Users are able to create a post, consisting of a single image and a caption, as long as 2,200 characters long (although, further design is required to     make this fully optimal). The image is posted using an image URL, which is filtered using regex. Some images will not be valid, due link not ending in     a proper format (E.g .jpeg)
   - Error handling is currently working, however, there are no restrictions on posting a space into text boxes.
+
+
+## Common Issues/Troubleshoot Tips
+1. This project was built using Node v16.20.2. If issues are encountered when running `npm start` for `frontend`, try running this in the command line (restart terminal session after this):
+```
+nvm use 16
+```
