@@ -28,17 +28,13 @@ export default function SinglePost({ post, user }) {
             user_id: user?.user?.id,
             comment
         }
-        // console.log(updatedPost.id, updatedUser.id)
+        
         dispatch(fetchPostComment(commentData));
         setComment('');
     }
 
     useEffect(async () => {
-        // console.log('post', post.post.id)
         await dispatch(fetchGetPosts());
-        // if () {
-        //     dispatch(fetchPostData(post.id))
-        // }
     }, [dispatch])
 
     return (

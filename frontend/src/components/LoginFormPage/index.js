@@ -29,7 +29,7 @@ function LoginFormPage() {
     setErrors([]);
     const credential = 'demo@user.io';
     const password = 'password';
-    console.log(credential, password)
+    
     return dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
         const data = await res.json();

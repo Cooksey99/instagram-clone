@@ -22,8 +22,7 @@ export default function PostModal({ sessionUser, user, post }) { // removed user
     // const user = useSelector(state => state?.newsfeed?.singlePost);
 
     useEffect(async () => {
-        await dispatch(fetchPostData(post?.id));
-        // console.log(post);
+        dispatch(fetchPostData(post?.id));
     }, [dispatch])
 
     return (

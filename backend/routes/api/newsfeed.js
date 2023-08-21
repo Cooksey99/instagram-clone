@@ -13,7 +13,6 @@ router.get('/', asyncHandler(async (req, res) => {
     const data = await Promise.all(posts.map(async post => {
         const user = await User.findByPk(post.user_id);
 
-        // console.log('\n\n\n' + post.id + '\n\n\n')
         const comments = await Comment.findAll({
             where: {
                 post_id: post.id

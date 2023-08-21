@@ -96,7 +96,6 @@ export const fetchPostData = (postId) => async dispatch => {
 
     const data = await response.json()
 
-    // console.log(value)
     dispatch(getPostInfo(data))
 };
 
@@ -106,10 +105,8 @@ export const fetchPostComment = (comment) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
-    // console.log('fetchPostComment', response);
 
     if (response.ok) {
-        // console.log('postComment', response);
         const data = await response.json();
         dispatch(postComment(data));
     };
@@ -124,7 +121,6 @@ export const fetchEditComment = (comment, commentId) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
 
-        console.log('fetchEditComment', response);
         dispatch(editComment(data));
     }
 };
@@ -147,7 +143,6 @@ export default function reducer(state = initialState, action) {
             newState.userPosts = action.posts;
             return newState;
         case EDIT_POST:
-            // newState.userPosts = newState.userPosts.map(post => post.id === action.post.id ? action.post : post);
             if (newState.posts.length > 0) newState.posts = newState.posts.map(single => single.post.id === action.post.id ? single.post = action.post : single);
             newState.singlePost.post = { ...action.post };
             return newState;
@@ -155,7 +150,6 @@ export default function reducer(state = initialState, action) {
             delete newState.posts[action.postId];
             return newState;
         case POST_INFO:
-            // console.log(action.postData)
             newState.singlePost = action.postData;
             return newState;
         //
@@ -165,7 +159,6 @@ export default function reducer(state = initialState, action) {
             return newState;
         case EDIT_COMMENT:
             newState.singlePost.comments = newState.singlePost.comments.map(comment => comment.comment.id === action.comment.id ? { user: comment.user, comment: action.comment } : comment);
-            console.log(action.comment);
             return newState;
         case DELETE_COMMENT:
             newState.singlePost.comments = newState.singlePost.comments.filter(comment => comment.comment.id !== action.commentId);

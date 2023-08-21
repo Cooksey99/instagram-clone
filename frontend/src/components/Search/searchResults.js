@@ -9,7 +9,6 @@ export default function SearchResults({ results, setFocus }) {
         <div className='fullscreen-container'
             onClick={() => {
                 setFocus(false)
-                console.log('hi')
             }}>
             <section id="search-results">
                 {results.length > 0 && results.map(profile => (

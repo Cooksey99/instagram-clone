@@ -5,22 +5,19 @@ import SignupFormPage from './components/SignupFormPage';
 import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import { Modal } from './context/Modal';
 import Profile from './components/Profile';
 import NewsfeedPage from './components/NewsfeedPage';
-import PostPageSolo from './components/Profile/PostPageSolo';
-import Footer from './components/Footer/Footer';
-import PostModal from './components/Profile/PostModal';
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state?.session?.user);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     console.log(isLoaded)
-  }, [dispatch]);
+  }, [dispatch, isLoaded]);
 
   return (
     <>

@@ -23,7 +23,6 @@ export default function PostSettings({ sessionUser, post, setShowModal, page }) 
     dispatch(fetchFindUser(post?.user_id));
     dispatch(fetchPostData(post?.id))
 
-    console.log(updatedPost)
   }, [dispatch])
 
   const copy = (url) => {

@@ -26,8 +26,8 @@ export default function CommentForm({ user, post, page }) {
         if (page === 'newsfeed') setPostModal(true);
     }
 
-    useEffect(async () => {
-        await dispatch(fetchPostData(post?.id));
+    useEffect(() => {
+        dispatch(fetchPostData(post?.id));
     }, [dispatch])
 
     return (

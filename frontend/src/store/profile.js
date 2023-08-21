@@ -1,4 +1,3 @@
-import { unstable_detectScrollType } from "@mui/utils";
 import { csrfFetch } from "./csrf";
 
 const FIND_USER = 'session/FIND_USER';
@@ -49,19 +48,18 @@ export const fetchSearchUser = (string) => async dispatch => {
 export const fetchGetFollows = (id) => async dispatch => {
   const response = await csrfFetch(`/api/follow/${id}`)
 
-  console.log('testing the user id', id)
   const data = await response.json();
   dispatch(getFollows(data));
 };
 export const fetchUnfollowUser = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/follow/unfollow/${id}`, {
+  await csrfFetch(`/api/follow/unfollow/${id}`, {
     method: 'DELETE'
   });
 
   dispatch(unfollowUser(id));
 };
 export const fetchRemoveFollower = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/follow/remove_follower/${id}`, {
+  await csrfFetch(`/api/follow/remove_follower/${id}`, {
     method: 'DELETE'
   });
 
@@ -93,22 +91,13 @@ export default function reducer(state = initialState, action) {
       newState.follows = action.follows;
       return newState;
     case UNFOLLOW_USER:
-      // newState.follows.followingObj.followers.filter(follow => follow.followed_user_id === action.id);
-      // newState.follows.followingObj.users.filter(user => user.id === action.id);
       delete newState.follows.followersObj;
-      console.log(newState.follows.followingObj)
-      console.log('unfollow id', action.id);
       return newState;
     case REMOVE_FOLLOWER:
-      // newState.follows.followingObj.followers.filter(follow => follow.id !== action.id);
-      // newState.follows.followingObj.followerUsers.filter(follow => follow.id !== action.id);
       return newState;
       case FOLLOW_USER:
-      console.log('reducer info:', action.follow);
       newState.follows.followingObj.followers.push(action.follow.follower);
       newState.follows.followingObj.users.push(action.follow.user);
-      // newState.follows.followersObj.following[action.follow.follower.id] = action.follow.follower;
-      // newState.follows.followersObj.users[action.follow.user.id] = action.follow.user;
       return newState
     default:
       return state;

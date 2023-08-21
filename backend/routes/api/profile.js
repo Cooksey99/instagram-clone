@@ -64,14 +64,7 @@ router.get('/post/:postId', asyncHandler(async (req, res) => {
         return result;
     }));
 
-    // let comments = { commentsObj };
     let final = { post, user, comments}
-    // console.log('\n\n\n' + comments + '\n\n\n')
-
-    // const comments = await Promise.all(commentList.map(comment => {
-    // }));
-
-    // const result = { post: post, comments: comments}
 
     res.json(final);
 }));
@@ -106,7 +99,6 @@ router.get('/search/:string', asyncHandler(async (req, res) => {
     });
 
     let users = userList.map(user => user);
-    console.log('\n\n' + users + '\n\n')
     res.json(users);
 }))
 
