@@ -15,7 +15,6 @@ export default function PostForm({ user }) {
         return /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))$/g.test(url);
     }
     const handleSubmit = (e) => {
-        console.log(testImage(image))
         if (testImage(image)) {
             const data = {
                 user_id: user.id,

@@ -48,19 +48,18 @@ export const fetchSearchUser = (string) => async dispatch => {
 export const fetchGetFollows = (id) => async dispatch => {
   const response = await csrfFetch(`/api/follow/${id}`)
 
-  console.log('testing the user id', id)
   const data = await response.json();
   dispatch(getFollows(data));
 };
 export const fetchUnfollowUser = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/follow/unfollow/${id}`, {
+  await csrfFetch(`/api/follow/unfollow/${id}`, {
     method: 'DELETE'
   });
 
   dispatch(unfollowUser(id));
 };
 export const fetchRemoveFollower = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/follow/remove_follower/${id}`, {
+  await csrfFetch(`/api/follow/remove_follower/${id}`, {
     method: 'DELETE'
   });
 
@@ -93,13 +92,10 @@ export default function reducer(state = initialState, action) {
       return newState;
     case UNFOLLOW_USER:
       delete newState.follows.followersObj;
-      console.log(newState.follows.followingObj)
-      console.log('unfollow id', action.id);
       return newState;
     case REMOVE_FOLLOWER:
       return newState;
       case FOLLOW_USER:
-      console.log('reducer info:', action.follow);
       newState.follows.followingObj.followers.push(action.follow.follower);
       newState.follows.followingObj.users.push(action.follow.user);
       return newState

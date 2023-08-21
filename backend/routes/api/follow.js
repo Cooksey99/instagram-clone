@@ -44,7 +44,6 @@ router.delete('/unfollow/:id', asyncHandler(async (req, res) => {
             followed_user_id: id
         }
     });
-    console.log('\n\n', follow, '\n\n');
     
     await follow.destroy();
     res.json();

@@ -16,7 +16,6 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
 
     useEffect(async () => {
         setCommentText(comment?.comment)
-        console.log('post', commentText)
     }, [dispatch, editComment]);
 
     const handleEdit = (e) => {
@@ -37,7 +36,6 @@ export default function SingleComment({ comment, user, sessionUser, postId }) {
     };
 
     const handleDelete = () => {
-        // console.log(comment.id);
         dispatch(fetchDeleteComment(comment.id));
         setEditComment(false);
         setCommentText('');
