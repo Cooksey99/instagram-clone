@@ -31,7 +31,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 
-    res.json(data);
+    return res.json(data);
 }));
 
 

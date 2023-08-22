@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchGetPosts } from "../../store/posts";
 import SinglePost from "./SinglePost";
@@ -7,13 +7,17 @@ import NewsfeedSidebar from "./NewsfeedSidebar";
 
 export default function NewsfeedPage({ user }) {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state?.newsfeed?.posts);
-
+    let [posts, setPosts] = useState([]);
+    
 
     useEffect(() => {
-        dispatch(fetchGetPosts());
-        console.log('posts: ', posts);
-    }, [posts]);
+        dispatch(fetchGetPosts())
+            .then(res => {
+                setPosts(res);
+            });
+    }, [dispatch]);
+    
+
 
     return (
         <>

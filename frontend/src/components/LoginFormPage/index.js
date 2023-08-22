@@ -10,8 +10,7 @@ import Footer from "../Footer/Footer";
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const posts = useSelector(state => state?.newsfeed?.posts);
-  
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,7 +18,6 @@ function LoginFormPage() {
 
   useEffect(() => {
     dispatch(fetchGetPosts());
-    console.log('posts: ', posts);
   }, [dispatch]);
 
   if (sessionUser) return <Redirect to="/" />;

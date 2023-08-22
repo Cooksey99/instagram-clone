@@ -52,6 +52,8 @@ export const fetchGetPosts = () => async dispatch => {
 
     const data = await response.json();
     dispatch(getPosts(data));
+
+    return data;
 };
 export const fetchUserPosts = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/profile/${userId}/posts`);
