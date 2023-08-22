@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
+import { fetchGetPosts } from "../../store/posts";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import './LoginForm.css';
@@ -8,9 +10,17 @@ import Footer from "../Footer/Footer";
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const posts = useSelector(state => state?.newsfeed?.posts);
+  
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+
+  useEffect(() => {
+    dispatch(fetchGetPosts());
+    console.log('posts: ', posts);
+  }, [dispatch]);
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -36,6 +46,7 @@ function LoginFormPage() {
         if (data && data.errors) setErrors(data.errors);
       });
   }
+
 
   return (
     <>

@@ -137,6 +137,8 @@ export default function reducer(state = initialState, action) {
     let newState = initialState;
     switch (action.type) {
         case GET_POSTS:
+            console.log("POSTS: ", action.posts);
+            
             newState.posts = action.posts;
             return newState;
         case USER_POSTS:

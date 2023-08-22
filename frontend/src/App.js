@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     console.log(isLoaded)
+
   }, [dispatch, isLoaded]);
 
   return (

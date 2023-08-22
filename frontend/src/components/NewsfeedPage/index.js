@@ -4,7 +4,6 @@ import { fetchGetPosts } from "../../store/posts";
 import SinglePost from "./SinglePost";
 import './NewsfeedPage.css'
 import NewsfeedSidebar from "./NewsfeedSidebar";
-import { Link } from "react-router-dom";
 
 export default function NewsfeedPage({ user }) {
     const dispatch = useDispatch();
@@ -12,8 +11,9 @@ export default function NewsfeedPage({ user }) {
 
 
     useEffect(() => {
-        dispatch(fetchGetPosts())
-    }, [dispatch])
+        dispatch(fetchGetPosts());
+        console.log('posts: ', posts);
+    }, [posts]);
 
     return (
         <>

@@ -36,7 +36,9 @@ router.post(
       return next(err);
     }
 
-    await setTokenCookie(res, user);
+    setTokenCookie(res, user);
+
+    // update users newsfeed
 
     return res.json({
       user,
